@@ -1,13 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Users, TreePine, History, Check, X, ExternalLink } from 'lucide-react';
+import { ShieldCheck, Users, TreePine, History, Check, X, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
+import axios from 'axios';
 
 const AdminDashboard = () => {
-  const pendingRequests = [
-    { id: 1, type: 'NGO Registration', name: 'Coastal Trust', date: '2026-04-10', status: 'Pending' },
-    { id: 2, type: 'Project Approval', name: 'Sundarbans Phase 2', date: '2026-04-11', status: 'Pending' },
-    { id: 3, type: 'Token Purchase', name: 'TechGiant Corp', date: '2026-04-11', status: 'Pending' },
-  ];
+  const [pendingUsers, setPendingUsers] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [tokenRequests, setTokenRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const [usersRes, projectsRes, tokensRes] = await Promise.all([
+        axios.get('/api/admin/pending-users'),
+        axios.get('/api/admin/projects'),
+        axios.get('/api/admin/token-requests')
+      ]);
+      setPendingUsers(usersRes.data);
+      setProjects(projectsRes.data);
+      setTokenRequests(tokensRes.data);
+    } catch (err) {
+      setError('Failed to fetch registry data. Ensure backend is running.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleApproveUser = async (id) => {
+    try {
+      await axios.post('/api/admin/approve-user', { id });
+      setPendingUsers(prev => prev.filter(u => u.id !== id));
+      alert('User approved successfully!');
+    } catch (err) {
+      alert('Failed to approve user.');
+    }
+  };
+
+  const handleApproveProject = async (id) => {
+    try {
+      await axios.post('/api/admin/approve-project', { id });
+      setProjects(prev => prev.map(p => p.id === id ? { ...p, status: 'approved' } : p));
+      alert('Project approved and tokens minted!');
+    } catch (err) {
+      alert('Failed to approve project. Ensure blockchain node is running.');
+    }
+  };
+
+  const handleApproveToken = async (id) => {
+    try {
+      await axios.post('/api/admin/approve-request', { id });
+      setTokenRequests(prev => prev.map(t => t.id === id ? { ...t, status: 'approved' } : t));
+      alert('Tokens transferred to corporate wallet!');
+    } catch (err) {
+      alert('Failed to approve token request.');
+    }
+  };
+
+  if (loading) return (
+    <div className="flex flex-col items-center justify-center py-20 gap-4">
+      <Loader2 className="animate-spin text-veridian-mist" size={48} />
+      <p className="text-gray-400 font-bold">Synchronizing with Blockchain Ledger...</p>
+    </div>
+  );
 
   return (
     <div className="flex flex-col gap-10">
@@ -19,56 +79,73 @@ const AdminDashboard = () => {
           </h1>
           <p className="text-gray-400">System Oversight & Blockchain Governance</p>
         </div>
-        <div className="flex gap-4">
-          <button className="glass px-6 py-2 rounded-lg font-semibold flex items-center gap-2">
-            <History size={18} />
-            Audit Logs
-          </button>
-          <button className="btn-primary">System Health</button>
-        </div>
       </div>
+
+      {error && (
+        <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3 text-red-500 text-sm">
+          <AlertCircle size={18} />
+          {error}
+        </div>
+      )}
 
       {/* Admin Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <StatCard label="Total Carbon Minted" value="54,200 T" sub="LIFETIME" />
-        <StatCard label="Registered NGOs" value="128" sub="+3 THIS WEEK" />
-        <StatCard label="Corporate Clients" value="42" sub="ACTIVE" />
-        <StatCard label="Admin Pool" value="12,500" sub="TOKENS" />
+        <StatCard label="Total Carbon Minted" value={`${projects.filter(p => p.status === 'approved').reduce((acc, curr) => acc + Number(curr.credits_generated || 0), 0)} T`} sub="LIFETIME" />
+        <StatCard label="Pending Verifications" value={pendingUsers.length + projects.filter(p => p.status === 'pending').length} sub="ACTION REQUIRED" />
+        <StatCard label="Registered NGOs" value="12" sub="ACTIVE" />
+        <StatCard label="Corporate Clients" value="4" sub="ACTIVE" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Verification Queue */}
         <div className="lg:col-span-2 glass rounded-3xl overflow-hidden">
           <div className="px-8 py-6 border-b border-white/10 bg-white/5 flex justify-between items-center">
-            <h3 className="font-bold text-xl">Verification Queue</h3>
-            <span className="bg-orange-500/20 text-orange-400 text-xs font-bold px-2 py-1 rounded tracking-tighter uppercase">Action Required</span>
+            <h3 className="font-bold text-xl">System Queue</h3>
+            <span className="bg-orange-500/20 text-orange-400 text-xs font-bold px-2 py-1 rounded tracking-tighter uppercase">Needs Review</span>
           </div>
           <div className="divide-y divide-white/5">
-            {pendingRequests.map((req) => (
-              <div key={req.id} className="px-8 py-6 flex items-center justify-between hover:bg-white/5 transition-all group">
-                <div className="flex items-center gap-6">
-                  <div className={`p-4 rounded-2xl ${
-                    req.type.includes('NGO') ? 'bg-green-500/10 text-green-400' : 
-                    req.type.includes('Project') ? 'bg-blue-500/10 text-blue-400' : 'bg-purple-500/10 text-purple-400'
-                  }`}>
-                    {req.type.includes('NGO') ? <Users size={24} /> : req.type.includes('Project') ? <TreePine size={24} /> : <ExternalLink size={24} />}
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{req.type}</p>
-                    <h4 className="text-lg font-bold">{req.name}</h4>
-                    <p className="text-sm text-gray-400">Submitted on {req.date}</p>
-                  </div>
-                </div>
-                <div className="flex gap-2">
-                  <button className="p-3 bg-red-500/10 text-red-500 rounded-xl hover:bg-red-500 text-white transition-all">
-                    <X size={20} />
-                  </button>
-                  <button className="p-3 bg-green-500/10 text-green-500 rounded-xl hover:bg-green-500 text-white transition-all">
-                    <Check size={20} />
-                  </button>
-                </div>
-              </div>
+            {/* User Enrollments */}
+            {pendingUsers.map((user) => (
+              <QueueItem 
+                key={user.id}
+                type="User Enrollment"
+                title={user.name}
+                subtitle={`${user.role.toUpperCase()} | ${user.email}`}
+                onApprove={() => handleApproveUser(user.id)}
+                icon={<Users size={24} />}
+                colorClass="bg-green-500/10 text-green-400"
+              />
             ))}
+            {/* Project Submissions */}
+            {projects.filter(p => p.status === 'pending').map((project) => (
+              <QueueItem 
+                key={project.id}
+                type="Project Approval"
+                title={project.name}
+                subtitle={`${project.area} Hectares | ${project.location}`}
+                onApprove={() => handleApproveProject(project.id)}
+                icon={<TreePine size={24} />}
+                colorClass="bg-blue-500/10 text-blue-400"
+              />
+            ))}
+            {/* Token Requests */}
+            {tokenRequests.filter(t => t.status === 'pending').map((token) => (
+              <QueueItem 
+                key={token.id}
+                type="Token Request"
+                title={`Request by ${token.company_id?.name}`}
+                subtitle={`${token.amount} VCC Tokens`}
+                onApprove={() => handleApproveToken(token.id)}
+                icon={<ExternalLink size={24} />}
+                colorClass="bg-purple-500/10 text-purple-400"
+              />
+            ))}
+
+            {pendingUsers.length === 0 && projects.filter(p => p.status === 'pending').length === 0 && tokenRequests.filter(t => t.status === 'pending').length === 0 && (
+              <div className="p-20 text-center text-gray-500 italic">
+                All queues are clear. The registry is up to date.
+              </div>
+            )}
           </div>
         </div>
 
@@ -76,13 +153,13 @@ const AdminDashboard = () => {
         <div className="glass rounded-3xl p-8 flex flex-col gap-6">
           <h3 className="font-bold text-xl border-b border-white/10 pb-4">On-Chain Activity</h3>
           <div className="flex flex-col gap-6">
-            {[1, 2, 3, 4].map(i => (
-              <div key={i} className="flex gap-4 items-start">
+            {projects.filter(p => p.tx_hash).slice(0, 5).map(p => (
+              <div key={p.id} className="flex gap-4 items-start">
                 <div className="w-2 h-10 bg-veridian-teal rounded-full mt-1" />
                 <div>
-                  <p className="text-xs font-mono text-veridian-mist">0x71c...{842 + i}</p>
-                  <p className="text-sm font-semibold">Minted 450 Tokens</p>
-                  <p className="text-xs text-gray-500">2 mins ago</p>
+                  <p className="text-xs font-mono text-veridian-mist truncate w-32">{p.tx_hash}</p>
+                  <p className="text-sm font-semibold">Minted {p.credits_generated} Tokens</p>
+                  <p className="text-xs text-gray-500">{new Date(p.created_at).toLocaleDateString()}</p>
                 </div>
               </div>
             ))}
@@ -95,6 +172,29 @@ const AdminDashboard = () => {
     </div>
   );
 };
+
+const QueueItem = ({ type, title, subtitle, onApprove, icon, colorClass }) => (
+  <div className="px-8 py-6 flex items-center justify-between hover:bg-white/5 transition-all group">
+    <div className="flex items-center gap-6">
+      <div className={`p-4 rounded-2xl ${colorClass}`}>
+        {icon}
+      </div>
+      <div>
+        <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{type}</p>
+        <h4 className="text-lg font-bold">{title}</h4>
+        <p className="text-sm text-gray-400">{subtitle}</p>
+      </div>
+    </div>
+    <div className="flex gap-2">
+      <button className="p-3 bg-red-500/10 text-red-500 rounded-xl hover:bg-red-500 hover:text-white transition-all">
+        <X size={20} />
+      </button>
+      <button onClick={onApprove} className="p-3 bg-green-500/10 text-green-500 rounded-xl hover:bg-green-500 hover:text-white transition-all">
+        <Check size={20} />
+      </button>
+    </div>
+  </div>
+);
 
 const StatCard = ({ label, value, sub }) => (
   <div className="glass rounded-2xl p-6 relative overflow-hidden group">
