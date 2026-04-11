@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | The Ethereal Registry</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#90d3cb",
+                    "outline-variant": "#bec8ca",
+                    "inverse-on-surface": "#edf2f2",
+                    "surface-container-low": "#eff5f5",
+                    "surface-tint": "#006972",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#ffd7c9",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#006d77",
+                    "surface-variant": "#dee3e3",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e4e9e9",
+                    "on-primary-fixed-variant": "#004f56",
+                    "background": "#f5fafa",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#236863",
+                    "on-tertiary-fixed": "#380d00",
+                    "surface-container": "#eaefef",
+                    "on-secondary-container": "#286d67",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "outline": "#6f797a",
+                    "on-tertiary-fixed-variant": "#6f3720",
+                    "surface-bright": "#f5fafa",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#00504b",
+                    "on-secondary-fixed": "#00201e",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#9ff0fb",
+                    "secondary-container": "#a9ece5",
+                    "on-surface-variant": "#3e494a",
+                    "surface-container-highest": "#dee3e3",
+                    "inverse-primary": "#82d3de",
+                    "tertiary-fixed": "#ffdbce",
+                    "primary": "#00535b",
+                    "surface": "#f5fafa",
+                    "surface-dim": "#d6dbdb",
+                    "tertiary-container": "#915239",
+                    "on-primary-fixed": "#001f23",
+                    "on-background": "#171d1d",
+                    "inverse-surface": "#2c3132",
+                    "tertiary": "#743b24",
+                    "secondary-fixed": "#acefe7",
+                    "on-surface": "#171d1d",
+                    "on-primary-container": "#9becf7",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#82d3de"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #bec8ca 1px, transparent 0);
+            background-size: 40px 40px;
+            opacity: 0.15;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen flex flex-col">
+<!-- Top Navigation (Shell Suprressed per rules for Login, but brand remains) -->
+<header class="fixed top-0 w-full z-50 flex justify-center py-12 pointer-events-none">
+<div class="pointer-events-auto">
+<span class="font-headline text-2xl font-bold tracking-tighter text-primary">The Ethereal Registry</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center relative px-6 overflow-hidden">
+<!-- Stylized Nature-Inspired Background Elements -->
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] left-[-5%] w-[40%] h-[60%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[50%] h-[70%] rounded-full bg-secondary/5 blur-[120px]"></div>
+<div class="absolute inset-0 bg-pattern"></div>
+</div>
+<!-- Login Container -->
+<div class="w-full max-w-[480px] z-10">
+<!-- Centered Login Card -->
+<div class="glass-card rounded-xl shadow-[0_40px_80px_rgba(23,29,29,0.06)] p-8 md:p-12 border border-outline-variant/15">
+<div class="text-center mb-10">
+<h1 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2">Access the Registry</h1>
+<p class="text-secondary font-body text-sm opacity-70">Securing environmental assets with institutional precision.</p>
+</div>
+<!-- Role Selection Segmented Control -->
+<div class="mb-8">
+<label class="block font-label text-[0.75rem] uppercase tracking-wider text-outline mb-3 ml-1">Account Role</label>
+<div class="grid grid-cols-3 p-1 bg-surface-container-low rounded-lg gap-1">
+<button class="py-2.5 px-2 text-xs font-medium rounded-md transition-all duration-300 bg-surface-container-lowest text-primary shadow-sm">
+                            NGO
+                        </button>
+<button class="py-2.5 px-2 text-xs font-medium rounded-md transition-all duration-300 text-outline hover:text-on-surface-variant">
+                            Institution
+                        </button>
+<button class="py-2.5 px-2 text-xs font-medium rounded-md transition-all duration-300 text-outline hover:text-on-surface-variant">
+                            Admin
+                        </button>
+</div>
+</div>
+<form action="#" class="space-y-6" method="POST">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="block font-label text-[0.75rem] uppercase tracking-wider text-outline ml-1" for="email">Email Address</label>
+<div class="relative group">
+<input class="w-full h-12 px-4 bg-surface-container-low border-none rounded-lg text-on-surface placeholder:text-outline/50 focus:ring-0 focus:bg-surface-container-lowest transition-all duration-300 peer" id="email" name="email" placeholder="name@organization.com" required="" type="email"/>
+<div class="absolute inset-0 rounded-lg pointer-events-none border border-primary/0 peer-focus:border-primary/30 transition-all duration-300"></div>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex justify-between items-center px-1">
+<label class="block font-label text-[0.75rem] uppercase tracking-wider text-outline" for="password">Password</label>
+<a class="text-[0.75rem] text-secondary font-medium hover:text-primary transition-colors" href="#">Forgot password?</a>
+</div>
+<div class="relative group">
+<input class="w-full h-12 px-4 bg-surface-container-low border-none rounded-lg text-on-surface placeholder:text-outline/50 focus:ring-0 focus:bg-surface-container-lowest transition-all duration-300 peer" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<div class="absolute inset-0 rounded-lg pointer-events-none border border-primary/0 peer-focus:border-primary/30 transition-all duration-300"></div>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline/60 hover:text-outline transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</div>
+</div>
+<!-- Primary Action Button -->
+<div class="pt-2">
+<button class="w-full h-12 bg-primary hover:bg-primary-container text-on-primary font-headline font-bold rounded-lg transition-all duration-300 shadow-lg shadow-primary/10 flex items-center justify-center gap-2 active:scale-95" type="submit">
+                            Sign In
+                            <span class="material-symbols-outlined text-[1.2rem]">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Footer Links -->
+<div class="mt-10 pt-8 border-t border-outline-variant/15 text-center">
+<p class="text-sm text-outline">
+                        New to the Arboretum? 
+                        <a class="text-primary font-bold ml-1 hover:underline underline-offset-4 transition-all" href="#">Request access</a>
+</p>
+</div>
+</div>
+<!-- Institutional Trust Indicator -->
+<div class="mt-8 flex items-center justify-center gap-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+<span class="font-label text-[0.65rem] uppercase tracking-widest">Encrypted Ledger</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">public</span>
+<span class="font-label text-[0.65rem] uppercase tracking-widest">Global Standards</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component Template) -->
+<footer class="w-full py-12 px-12 mt-auto flex flex-col md:flex-row justify-between items-center gap-8 border-t border-[#bec8ca]/15 bg-[#f5fafa]">
+<span class="font-inter text-xs tracking-wide uppercase text-[#236863] opacity-60">© 2024 The Ethereal Registry. Curating the Digital Arboretum.</span>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-inter text-xs tracking-wide uppercase text-[#236863] opacity-60 hover:text-[#00535b] hover:opacity-100 transition-all" href="#">Privacy Policy</a>
+<a class="font-inter text-xs tracking-wide uppercase text-[#236863] opacity-60 hover:text-[#00535b] hover:opacity-100 transition-all" href="#">Terms of Service</a>
+<a class="font-inter text-xs tracking-wide uppercase text-[#236863] opacity-60 hover:text-[#00535b] hover:opacity-100 transition-all" href="#">Registry API</a>
+<a class="font-inter text-xs tracking-wide uppercase text-[#236863] opacity-60 hover:text-[#00535b] hover:opacity-100 transition-all" href="#">Institutional Trust</a>
+</div>
+</footer>
+</body></html>

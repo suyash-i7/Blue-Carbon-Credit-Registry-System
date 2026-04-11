@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Veridian Registry | Corporate Carbon Ledger</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f5fafa",
+                        "surface-container": "#eaefef",
+                        "on-surface": "#171d1d",
+                        "secondary-fixed": "#acefe7",
+                        "surface-tint": "#006972",
+                        "on-primary-fixed": "#001f23",
+                        "tertiary": "#743b24",
+                        "primary-fixed": "#9ff0fb",
+                        "tertiary-fixed": "#ffdbce",
+                        "on-primary-fixed-variant": "#004f56",
+                        "secondary-container": "#a9ece5",
+                        "surface-container-highest": "#dee3e3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#286d67",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2c3132",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#9becf7",
+                        "on-background": "#171d1d",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e4e9e9",
+                        "primary": "#00535b",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#915239",
+                        "on-surface-variant": "#3e494a",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "primary-fixed-dim": "#82d3de",
+                        "surface-variant": "#dee3e3",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#eff5f5",
+                        "inverse-on-surface": "#edf2f2",
+                        "on-secondary-fixed": "#00201e",
+                        "secondary": "#236863",
+                        "on-tertiary-fixed": "#380d00",
+                        "secondary-fixed-dim": "#90d3cb",
+                        "outline-variant": "#bec8ca",
+                        "error": "#ba1a1a",
+                        "surface": "#f5fafa",
+                        "outline": "#6f797a",
+                        "surface-dim": "#d6dbdb",
+                        "on-tertiary-container": "#ffd7c9",
+                        "on-tertiary-fixed-variant": "#6f3720",
+                        "primary-container": "#006d77",
+                        "on-secondary-fixed-variant": "#00504b",
+                        "inverse-primary": "#82d3de",
+                        "surface-bright": "#f5fafa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+        }
+        .text-shadow-sm {
+            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-6 z-40 bg-white/80 dark:bg-slate-950/80 h-screen w-64 border-r border-slate-200/15 dark:border-slate-800/15 glassmorphic backdrop-blur-[32px] shadow-[40px_0_40px_rgba(23,29,29,0.06)]">
+<div class="mb-10">
+<h1 class="text-lg font-bold text-[#00535b] dark:text-teal-400 font-headline tracking-tight">The Arboretum</h1>
+<p class="text-[10px] uppercase tracking-[0.1em] text-outline font-label">Verified Registry Node</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-[#006d77]/10 text-[#00535b] dark:text-teal-300 rounded-lg font-bold translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="text-sm">Registry Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 hover:pl-2 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="tsunami">tsunami</span>
+<span class="text-sm">Project Portfolio</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 hover:pl-2 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="text-sm">Token Ledger</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 hover:pl-2 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="text-sm">Verification Queue</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 hover:pl-2 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="text-sm">Stakeholders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 hover:pl-2 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-sm">Audit Logs</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/15 space-y-2">
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-xl font-headline text-sm font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95 mb-4">
+                Submit New Project
+            </button>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 text-xs hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_center">help_center</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 text-xs hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="menu_book">menu_book</span>
+<span>Documentation</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen p-10">
+<!-- Top Bar -->
+<header class="flex justify-between items-center mb-12">
+<div>
+<h2 class="text-3xl font-extrabold font-headline text-primary tracking-tight">Portfolio View</h2>
+<p class="text-outline font-label uppercase tracking-widest text-[10px] mt-1">Institutional Environmental Ledger</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-xs font-semibold text-on-secondary-container">Registry Node Active</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold border-2 border-white shadow-sm overflow-hidden">
+<img alt="Executive profile" class="w-full h-full object-cover" data-alt="professional portrait of a corporate executive in a modern glass-walled office with soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFToq6dwo_0GjpyrfV6LtuJzGVGcBcUjEKMEQ5jg4sBMuNDnURLmWi6jD6p1q879uUzI6T7rLMUKee3iwBM1GWP_8LtiitjQhHjBYFVSnTH9IrwqiWBijG_Ka07j78q7OgtZHcOERlUI_4qnEtMSRaHooVjNe6YDL_cMeOvo_MIyBFJOoTKYV170Yj_pluT_ttdI81dGqBKrV28-wsaZ-2zGVAPFJ6iaznoG8g1r3b1BcKH9FiqmXmcnW8hP1xmQ1hUnG8oUb4qfYk"/>
+</div>
+</div>
+</div>
+</header>
+<!-- KPI Bento Grid -->
+<section class="grid grid-cols-12 gap-6 mb-12">
+<!-- Main Balance -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl p-8 flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-sm font-label text-outline uppercase tracking-wider mb-6">Total Registry Credits Owned</h3>
+<div class="flex items-baseline gap-4">
+<span class="text-6xl font-extrabold font-headline text-primary">12,840.00</span>
+<span class="text-xl font-bold text-secondary">V-TCU</span>
+</div>
+<p class="text-sm text-outline-variant mt-4 max-w-md">Verified Tonne Carbon Units currently held in your sovereign node vault. All credits are secondary-market eligible.</p>
+</div>
+<div class="mt-8 flex gap-12 relative z-10">
+<div>
+<p class="text-[10px] text-outline uppercase font-bold tracking-widest mb-1">Carbon Offset Equivalent</p>
+<p class="text-2xl font-bold text-on-surface">32,100 <span class="text-xs font-normal text-outline">MT CO2e</span></p>
+</div>
+<div>
+<p class="text-[10px] text-outline uppercase font-bold tracking-widest mb-1">Portfolio Valuation</p>
+<p class="text-2xl font-bold text-on-surface">$892,450.00 <span class="text-xs font-normal text-outline">USD</span></p>
+</div>
+</div>
+<!-- Abstract visual element -->
+<div class="absolute right-[-10%] top-[-10%] w-64 h-64 bg-secondary-container/20 rounded-full blur-[80px]"></div>
+<div class="absolute right-4 bottom-4 opacity-5">
+<span class="material-symbols-outlined text-[160px]" data-icon="nature">nature</span>
+</div>
+</div>
+<!-- Request Token CTA Card -->
+<div class="col-span-12 lg:col-span-4 bg-primary-container text-white rounded-xl p-8 flex flex-col justify-between shadow-2xl shadow-primary/10">
+<div>
+<span class="material-symbols-outlined text-4xl mb-4" data-icon="add_moderator" style="font-variation-settings: 'FILL' 1;">add_moderator</span>
+<h3 class="text-2xl font-headline font-bold mb-2">Request Tokens</h3>
+<p class="text-on-primary-container text-sm leading-relaxed">Initiate a multi-step emission verification process to mint new carbon credits for your latest reforestation project.</p>
+</div>
+<button class="mt-8 py-4 px-6 bg-white text-primary font-bold rounded-lg flex items-center justify-center gap-2 hover:bg-secondary-container transition-colors active:scale-95">
+                    Start Verification Flow
+                    <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<section class="grid grid-cols-12 gap-8">
+<!-- Token Ledger -->
+<div class="col-span-12 lg:col-span-8">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-headline font-bold text-primary">Token Ledger</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-bold rounded-full bg-surface-container-high text-outline hover:bg-surface-container-highest transition-colors">Export CSV</button>
+<button class="px-3 py-1.5 text-xs font-bold rounded-full bg-surface-container-high text-outline hover:bg-surface-container-highest transition-colors">Filter</button>
+</div>
+</div>
+<div class="space-y-4">
+<!-- Ledger Item 1 -->
+<div class="glass-card rounded-xl p-5 flex items-center justify-between border-l-4 border-primary shadow-sm hover:translate-x-1 transition-transform duration-300">
+<div class="flex items-center gap-4">
+<div class="relative w-12 h-12 flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-surface-container-highest" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-dasharray="126" stroke-dashoffset="30" stroke-width="4"></circle>
+</svg>
+<span class="text-[10px] font-bold text-primary">76d</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-sm">Amazon Basin Reforestation #882</h4>
+<p class="text-xs text-outline font-mono">ID: VRD-9920-X1</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">2,450.00 TCU</p>
+<p class="text-[10px] text-outline font-label uppercase">Expires: Oct 24, 2024</p>
+</div>
+<div class="px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider">
+                            Verified
+                        </div>
+</div>
+<!-- Ledger Item 2 -->
+<div class="glass-card rounded-xl p-5 flex items-center justify-between border-l-4 border-primary shadow-sm hover:translate-x-1 transition-transform duration-300">
+<div class="flex items-center gap-4">
+<div class="relative w-12 h-12 flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-surface-container-highest" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-tertiary-container" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-dasharray="126" stroke-dashoffset="110" stroke-width="4"></circle>
+</svg>
+<span class="text-[10px] font-bold text-tertiary-container">12d</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-sm">North Sea Wind Farm Offsets</h4>
+<p class="text-xs text-outline font-mono">ID: VRD-4412-B9</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">5,100.00 TCU</p>
+<p class="text-[10px] text-outline font-label uppercase">Expires: Aug 12, 2024</p>
+</div>
+<div class="px-4 py-1.5 rounded-full bg-surface-container-highest text-outline text-[10px] font-bold uppercase tracking-wider">
+                            Near Expiry
+                        </div>
+</div>
+<!-- Ledger Item 3 (Expired) -->
+<div class="bg-surface-container-low/50 rounded-xl p-5 flex items-center justify-between border-l-4 border-error shadow-sm opacity-70">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-sm">Congo Basin Protection 2023</h4>
+<p class="text-xs text-outline font-mono">ID: VRD-1102-K3</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-outline line-through">1,200.00 TCU</p>
+<p class="text-[10px] text-error font-label uppercase">Expired: July 01, 2024</p>
+</div>
+<div class="px-4 py-1.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold uppercase tracking-wider">
+                            Expired
+                        </div>
+</div>
+</div>
+</div>
+<!-- Multi-step Form Preview/Section -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<h3 class="text-xl font-headline font-bold text-primary">Compliance Status</h3>
+<div class="glass-card rounded-xl p-6 border-t-4 border-secondary">
+<p class="text-[10px] font-label text-outline uppercase tracking-widest mb-4">Required Documents</p>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="description">description</span>
+<span class="text-xs font-medium">Emission_Proof_Q2.pdf</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg group cursor-pointer hover:bg-white transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="upload_file">upload_file</span>
+<span class="text-xs font-medium">Project_Site_Imagery</span>
+</div>
+<span class="text-[10px] font-bold text-primary">Upload</span>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6">
+<h4 class="text-sm font-bold mb-4">Calculated Token Requirement</h4>
+<div class="p-4 bg-primary/5 rounded-lg border border-primary/10">
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs text-outline">Q3 Projected Gap</span>
+<span class="text-xs font-bold text-primary">820.50 TCU</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+<p class="text-[10px] text-outline-variant mt-4 leading-relaxed">Based on your uploaded emission proofs, you need an additional 212 TCU to maintain Net-Zero certification for this quarter.</p>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden aspect-video group">
+<img alt="Sustainable forest management" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="vibrant aerial view of a dense sustainable forest plantation with intricate patterns of varied tree species and soft morning mist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_L_kTbWwmtOmTgn2-4dAp6SKDmmLZx5wUg5WCN6DqoCQCQb3JhTmFgu_E9MTXFF_O8pCQQpkPG3r_CNHRlAsH8-5uwYVMnR3y3XSopBS-xkw3ABISxJhn4NL_820kdpRAAhnPNKkZNANikHf8qgRGtmR5vEXh1rnpemD2S0ZkS3aKRBg2_TxYk6rloHofsUdv-a8lVa3zb8HwJ_QWv3PXT7mmah5D-F8pXI-U2GKrH8H_wMya7agWipeYnEFPgUhQLOhpaFnM60CO"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
+<div class="text-white">
+<p class="text-[10px] font-label uppercase tracking-widest opacity-80">Featured Project</p>
+<h5 class="text-lg font-bold font-headline">Casamance Mangroves</h5>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB for quick action (Only for top-level context) -->
+<button class="fixed bottom-8 right-8 w-16 h-16 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="chat_bubble_outline">chat_bubble_outline</span>
+</button>
+</body></html>

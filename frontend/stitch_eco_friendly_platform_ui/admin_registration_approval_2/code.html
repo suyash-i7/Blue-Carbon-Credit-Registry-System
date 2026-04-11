@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registration Approval Panel | The Ethereal Registry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#eff5f5",
+                    "inverse-surface": "#2c3132",
+                    "on-surface": "#171d1d",
+                    "primary": "#00535b",
+                    "on-tertiary-fixed-variant": "#6f3720",
+                    "secondary-container": "#a9ece5",
+                    "on-surface-variant": "#3e494a",
+                    "tertiary": "#743b24",
+                    "surface-dim": "#d6dbdb",
+                    "on-tertiary-container": "#ffd7c9",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "surface": "#f5fafa",
+                    "secondary-fixed-dim": "#90d3cb",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#9ff0fb",
+                    "secondary": "#236863",
+                    "secondary-fixed": "#acefe7",
+                    "background": "#f5fafa",
+                    "on-secondary-fixed-variant": "#00504b",
+                    "surface-variant": "#dee3e3",
+                    "surface-bright": "#f5fafa",
+                    "on-primary-fixed-variant": "#004f56",
+                    "surface-container-high": "#e4e9e9",
+                    "surface-tint": "#006972",
+                    "tertiary-container": "#915239",
+                    "outline": "#6f797a",
+                    "on-background": "#171d1d",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#380d00",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#82d3de",
+                    "tertiary-fixed": "#ffdbce",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#edf2f2",
+                    "on-secondary-fixed": "#00201e",
+                    "on-secondary-container": "#286d67",
+                    "on-primary-container": "#9becf7",
+                    "surface-container": "#eaefef",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#82d3de",
+                    "primary-container": "#006d77",
+                    "on-primary-fixed": "#001f23",
+                    "surface-container-highest": "#dee3e3",
+                    "outline-variant": "#bec8ca"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-8 py-4 w-full bg-[#f5fafa] dark:bg-slate-900 border-b border-[#bec8ca]/15">
+<div class="flex items-center gap-8">
+<h1 class="text-xl font-bold tracking-tight text-[#00535b] dark:text-[#006d77]">The Ethereal Registry</h1>
+<div class="hidden md:flex items-center gap-6">
+<!-- Navigation links would go here if provided in JSON -->
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-2 text-slate-500 hover:bg-[#006d77]/5 rounded-full transition-colors">notifications</button>
+<button class="material-symbols-outlined p-2 text-slate-500 hover:bg-[#006d77]/5 rounded-full transition-colors">settings</button>
+<div class="h-8 w-[1px] bg-outline-variant/15 mx-2"></div>
+<button class="flex items-center gap-3 px-4 py-2 rounded-full bg-primary text-on-primary hover:opacity-90 transition-opacity">
+<span class="text-sm font-medium">Admin Console</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Administrator Profile" data-alt="professional portrait of a corporate executive in a modern office with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD58nA-UTfJkMi2PtFShxOrg9k7nS4vBm1M2Oj_e952G0cpAlk2MRDcHPzNql7fcF6B5OMlUF8zuz3KA_Wkjdnbbv09FylXEzvpnZTJsipqwDM0wpXXMZ4piU3YLIihI07CS20mlCboAL4x5GyHNtXtkP8lNS2LsHf0YPesJxehFSSgtQJkKYAc1gJeSOKNTVtWmio64c870ve0hwotLIJNyIQ0g6T5HyWZA5KX9mxzpE_aWwQgCJxlk3V5HDoImLKEx7rdVbAljqf1"/>
+</div>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-6 bg-[#f5fafa] dark:bg-slate-950 h-screen w-64 border-r border-[#bec8ca]/15 z-40">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<div class="text-lg font-black text-[#00535b] dark:text-[#006d77]">Registry Admin</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Institutional Access</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-[#00535b] hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg transition-colors font-medium" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#006d77]/10 text-[#00535b] dark:text-[#006d77] font-bold rounded-r-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">how_to_reg</span>
+<span class="text-sm">Registrations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-[#00535b] hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg transition-colors font-medium" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="text-sm">Project Ledger</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-[#00535b] hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg transition-colors font-medium" href="#">
+<span class="material-symbols-outlined">verified</span>
+<span class="text-sm">Verified Entities</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-[#00535b] hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg transition-colors font-medium" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-sm">Audit Logs</span>
+</a>
+</nav>
+<div class="px-6 py-6 border-t border-outline-variant/15 space-y-4">
+<button class="w-full py-3 bg-secondary text-on-secondary rounded-xl font-semibold text-sm shadow-sm hover:opacity-90 transition-opacity">
+                    Generate Report
+                </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 text-sm hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">help_outline</span>
+                        Support
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 text-sm hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+                        Logout
+                    </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 min-h-screen p-10">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div>
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Registration Approval Panel</h2>
+<p class="text-outline max-w-2xl leading-relaxed">Review and authenticate organizational applications for the global carbon credit registry. Maintain the integrity of the Ethereal Ledger through meticulous verification.</p>
+</div>
+<div class="flex gap-3">
+<div class="bg-surface-container-low px-6 py-3 rounded-2xl flex items-center gap-4">
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold tracking-widest text-outline">Pending Total</p>
+<p class="text-2xl font-bold text-primary">24</p>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold tracking-widest text-outline">Avg. Wait Time</p>
+<p class="text-2xl font-bold text-secondary">1.2d</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- Left Section: Tabs & List -->
+<div class="col-span-12 lg:col-span-7 space-y-8">
+<!-- Custom Tabs -->
+<div class="flex gap-1 bg-surface-container-low p-1.5 rounded-2xl w-fit">
+<button class="px-8 py-3 bg-surface-container-lowest text-primary font-bold rounded-xl shadow-sm">Pending NGOs</button>
+<button class="px-8 py-3 text-outline font-medium hover:text-on-surface transition-colors">Pending Companies</button>
+</div>
+<!-- Requests Table -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-xl rounded-[2rem] overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-5 text-[10px] uppercase font-black tracking-widest text-outline">Organization Name</th>
+<th class="px-8 py-5 text-[10px] uppercase font-black tracking-widest text-outline">Reg. No.</th>
+<th class="px-8 py-5 text-[10px] uppercase font-black tracking-widest text-outline">Date</th>
+<th class="px-8 py-5 text-[10px] uppercase font-black tracking-widest text-outline">Status</th>
+<th class="px-8 py-5 text-right"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-primary/5 transition-colors group cursor-pointer">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-sm">GF</div>
+<span class="font-bold text-on-surface">Green Future Alliance</span>
+</div>
+</td>
+<td class="px-8 py-6 text-sm font-medium text-outline">NGO-2024-8892</td>
+<td class="px-8 py-6 text-sm text-outline">Oct 12, 2024</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-highest text-[10px] font-bold text-outline uppercase tracking-wider">Pending Review</span>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="px-5 py-2 text-primary font-bold text-sm hover:underline">Review</button>
+</td>
+</tr>
+<tr class="bg-primary/[0.02] border-l-4 border-primary shadow-sm">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold text-sm">BR</div>
+<span class="font-bold text-on-surface">Blue Reef Foundation</span>
+</div>
+</td>
+<td class="px-8 py-6 text-sm font-medium text-outline">NGO-2024-1102</td>
+<td class="px-8 py-6 text-sm text-outline">Oct 14, 2024</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-highest text-[10px] font-bold text-outline uppercase tracking-wider">Pending Review</span>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="px-5 py-2 bg-primary text-on-primary rounded-lg font-bold text-sm shadow-sm">Active</button>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group cursor-pointer">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed-dim flex items-center justify-center text-on-tertiary-fixed font-bold text-sm">ET</div>
+<span class="font-bold text-on-surface">EcoTrust International</span>
+</div>
+</td>
+<td class="px-8 py-6 text-sm font-medium text-outline">NGO-2024-5541</td>
+<td class="px-8 py-6 text-sm text-outline">Oct 15, 2024</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-highest text-[10px] font-bold text-outline uppercase tracking-wider">Pending Review</span>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="px-5 py-2 text-primary font-bold text-sm hover:underline">Review</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Section: Detail View / Document Review (Simulated "Glassmorphic" Side Panel) -->
+<div class="col-span-12 lg:col-span-5">
+<div class="sticky top-32 bg-surface-container-lowest/90 border border-outline-variant/15 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-2xl shadow-on-surface/5">
+<div class="flex items-center justify-between mb-8">
+<span class="text-[10px] uppercase font-black tracking-widest text-primary">Registration Detail</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-on-surface transition-colors">close</span>
+</div>
+<div class="mb-10">
+<h3 class="text-3xl font-extrabold text-on-surface mb-2">Blue Reef Foundation</h3>
+<div class="flex items-center gap-4 text-sm text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-lg">location_on</span> Seychelles</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-lg">verified_user</span> Tier 1 Registry</span>
+</div>
+</div>
+<div class="space-y-6 mb-12">
+<h4 class="text-[10px] uppercase font-black tracking-widest text-outline">Uploaded Documentation</h4>
+<div class="group relative bg-surface-container-low hover:bg-surface-container-high p-4 rounded-2xl flex items-center justify-between transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Registration_Certificate.pdf</p>
+<p class="text-[10px] text-outline">Certified Copy • 2.4 MB</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">visibility</span>
+</div>
+<div class="group relative bg-surface-container-low hover:bg-surface-container-high p-4 rounded-2xl flex items-center justify-between transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Emission_Audit_FY24.pdf</p>
+<p class="text-[10px] text-outline">Independent Auditor Report • 5.1 MB</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-secondary transition-colors">visibility</span>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="grid grid-cols-2 gap-4">
+<button class="py-4 rounded-2xl border border-error/20 text-error font-bold text-sm hover:bg-error-container/30 transition-colors">
+                                Reject Application
+                            </button>
+<button class="py-4 rounded-2xl bg-primary text-on-primary font-extrabold text-sm shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                                Approve Entity
+                            </button>
+</div>
+<p class="mt-6 text-center text-[10px] text-outline leading-relaxed px-6">
+                            By clicking approve, you certify that all documents have been verified against institutional standards and comply with the Ethereal Protocol.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Recently Processed (Secondary Information) -->
+<section class="mt-16">
+<h4 class="text-[10px] uppercase font-black tracking-widest text-outline mb-6">Recently Processed Companies</h4>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-low/40 p-6 rounded-3xl border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary font-bold">A</div>
+<span class="px-2 py-1 rounded bg-primary-fixed text-on-primary-fixed-variant text-[8px] font-black uppercase tracking-widest">Approved</span>
+</div>
+<h5 class="font-bold text-on-surface">Atlas Energy Corp</h5>
+<p class="text-xs text-outline mt-1">Sector: Industrial Manufacturing</p>
+<div class="mt-4 flex justify-between items-center">
+<span class="text-xs font-bold text-secondary">4.2M tCO2e</span>
+<span class="text-[10px] text-outline">2h ago</span>
+</div>
+</div>
+<div class="bg-surface-container-low/40 p-6 rounded-3xl border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-secondary font-bold">V</div>
+<span class="px-2 py-1 rounded bg-primary-fixed text-on-primary-fixed-variant text-[8px] font-black uppercase tracking-widest">Approved</span>
+</div>
+<h5 class="font-bold text-on-surface">Vanguard Logistics</h5>
+<p class="text-xs text-outline mt-1">Sector: Global Shipping</p>
+<div class="mt-4 flex justify-between items-center">
+<span class="text-xs font-bold text-secondary">890k tCO2e</span>
+<span class="text-[10px] text-outline">5h ago</span>
+</div>
+</div>
+<div class="bg-surface-container-low/40 p-6 rounded-3xl border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-tertiary font-bold">S</div>
+<span class="px-2 py-1 rounded bg-error-container text-on-error-container text-[8px] font-black uppercase tracking-widest">Rejected</span>
+</div>
+<h5 class="font-bold text-on-surface">Stellar Dynamics</h5>
+<p class="text-xs text-outline mt-1">Sector: Aerospace</p>
+<div class="mt-4 flex justify-between items-center">
+<span class="text-xs font-bold text-error">Audit Missing</span>
+<span class="text-[10px] text-outline">1d ago</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

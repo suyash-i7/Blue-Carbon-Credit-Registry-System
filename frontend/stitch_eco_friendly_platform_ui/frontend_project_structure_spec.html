@@ -1,0 +1,57 @@
+# 🌿 Veridian Registry: Frontend Technical Specification
+
+This document outlines the architecture, file structure, and implementation details for the Veridian Blue Carbon Credit Registry frontend.
+
+## 1. Project Overview
+A production-grade React application built with **Vite**, styled with **TailwindCSS**, and utilizing **Lucide React** for iconography. The system supports three distinct user roles with unique dashboards and permissions.
+
+## 2. File Structure
+
+```
+veridian-registry/
+├── src/
+│   ├── assets/              # Brand assets, logos, and ecosystem imagery
+│   ├── components/
+│   │   ├── common/          # Shared components (Navbar, Sidebar, Buttons)
+│   │   ├── forms/           # Multi-step registration and submission forms
+│   │   ├── charts/          # Carbon analytics and ledger visualizations
+│   │   └── ui/              # Atom-level components (Badges, Modals, Inputs)
+│   ├── contexts/            # Role-based Auth and Web3 (MetaMask) State
+│   ├── hooks/               # Custom hooks for API and Blockchain interactions
+│   ├── pages/
+│   │   ├── auth/            # Unified Login, NGO/Company Registration
+│   │   ├── ngo/             # Dashboard, Project Submission, Portfolio
+│   │   ├── admin/           # Dashboard, Approval Panels, Audit Logs
+│   │   └── company/         # Dashboard, Token Requests, Ledger
+│   ├── App.jsx              # Routing and Layout Wrappers
+│   └── main.jsx
+├── tailwind.config.js       # Veridian Design System (Manrope, Teal/Ocean Palette)
+└── package.json
+```
+
+## 3. Core Routing & Access Control
+
+| Route | Page | Access Role | Screen Reference |
+| :--- | :--- | :--- | :--- |
+| `/login` | Unified Login Page | Public | {{DATA:SCREEN:SCREEN_6}} |
+| `/register/ngo` | NGO Enrollment | Public | {{DATA:SCREEN:SCREEN_8}} |
+| `/register/company` | Company Enrollment | Public | {{DATA:SCREEN:SCREEN_17}} |
+| `/admin/approvals` | Registration Panel | Admin | {{DATA:SCREEN:SCREEN_22}} / {{DATA:SCREEN:SCREEN_23}} |
+| `/ngo/dashboard` | NGO Main View | NGO | {{DATA:SCREEN:SCREEN_21}} |
+| `/ngo/submit` | Project Form | NGO | {{DATA:SCREEN:SCREEN_12}} |
+| `/admin/projects` | Project Verification| Admin | {{DATA:SCREEN:SCREEN_20}} |
+| `/company/dashboard`| Company Main View | Company | {{DATA:SCREEN:SCREEN_18}} |
+| `/company/request` | Token Request | Company | {{DATA:SCREEN:SCREEN_2}} |
+| `/admin/tokens` | Token Approval | Admin | {{DATA:SCREEN:SCREEN_10}} |
+| `/admin/logs` | Registry Audit Logs | Admin | {{DATA:SCREEN:SCREEN_14}} |
+
+## 4. Design System Tokens (Veridian)
+- **Typography:** Manrope (Headlines), Inter (Data/Body)
+- **Primary Palette:** `#006D77` (Deep Teal), `#83C5BE` (Mist), `#EDF6F9` (Clean Surface)
+- **Shape:** `Rounded-lg` (8px) for containers, `Rounded-full` for active states.
+- **Glassmorphism:** `backdrop-blur-xl bg-white/70` used for navigation components.
+
+## 5. Development Instructions
+1. **State Management:** Use `React Context` for user roles and `ethers.js` for MetaMask connection.
+2. **Styling:** Strictly follow Tailwind classes as defined in the provided HTML screens to maintain the "Veridian" aesthetic.
+3. **Icons:** Use `lucide-react` for all system icons.

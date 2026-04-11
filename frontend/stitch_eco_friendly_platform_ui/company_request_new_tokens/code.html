@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Request New Tokens | The Ethereal Registry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e4e9e9",
+                    "tertiary": "#743b24",
+                    "surface-container-highest": "#dee3e3",
+                    "secondary": "#236863",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#dee3e3",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#ffdbce",
+                    "surface-tint": "#006972",
+                    "primary-fixed-dim": "#82d3de",
+                    "on-tertiary-fixed-variant": "#6f3720",
+                    "on-background": "#171d1d",
+                    "tertiary-container": "#915239",
+                    "surface-container": "#eaefef",
+                    "on-secondary-fixed": "#00201e",
+                    "primary-container": "#006d77",
+                    "error-container": "#ffdad6",
+                    "surface": "#f5fafa",
+                    "inverse-surface": "#2c3132",
+                    "secondary-container": "#a9ece5",
+                    "on-surface-variant": "#3e494a",
+                    "surface-bright": "#f5fafa",
+                    "on-tertiary-fixed": "#380d00",
+                    "secondary-fixed-dim": "#90d3cb",
+                    "inverse-primary": "#82d3de",
+                    "on-tertiary-container": "#ffd7c9",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#9ff0fb",
+                    "error": "#ba1a1a",
+                    "primary": "#00535b",
+                    "on-primary-fixed-variant": "#004f56",
+                    "outline-variant": "#bec8ca",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#edf2f2",
+                    "on-secondary-fixed-variant": "#00504b",
+                    "on-secondary-container": "#286d67",
+                    "on-primary-container": "#9becf7",
+                    "surface-dim": "#d6dbdb",
+                    "on-surface": "#171d1d",
+                    "on-primary-fixed": "#001f23",
+                    "secondary-fixed": "#acefe7",
+                    "background": "#f5fafa",
+                    "outline": "#6f797a",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#eff5f5",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f5fafa; color: #171d1d; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar Integration -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 gap-2 bg-[#f5fafa] dark:bg-slate-950 h-screen w-64 border-r border-[#bec8ca]/15 font-inter text-sm font-medium">
+<div class="mb-8 px-2 py-4">
+<h1 class="text-lg font-manrope font-bold text-[#00535b]">Carbon Ledger</h1>
+<p class="text-[10px] text-outline uppercase tracking-widest mt-1">Verified Accounts</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-[#006d77]/10 text-[#00535b] rounded-lg group scale-95 duration-100" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="token">token</span>
+<span>Token Issuance</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>Portfolio</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="history_edu">history_edu</span>
+<span>Audit Logs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="support_agent">support_agent</span>
+<span>Support</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 space-y-1">
+<button class="w-full mb-6 bg-primary text-on-primary py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Request
+            </button>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="description">description</span>
+<span>Documentation</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="gavel">gavel</span>
+<span>Legal</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 min-h-screen p-12 lg:p-20">
+<div class="max-w-6xl mx-auto">
+<!-- Header -->
+<header class="mb-16">
+<h1 class="text-5xl font-manrope font-extrabold tracking-tight text-primary mb-4">Request Carbon Tokens</h1>
+<p class="text-body text-secondary max-w-2xl leading-relaxed">
+                    Initiate the institutional emission offsetting process by submitting your verified audit reports. 
+                    Our registry ensures each token is backed by rigorous ecological data and legal certification.
+                </p>
+</header>
+<div class="grid grid-cols-12 gap-12 items-start">
+<!-- Main Form Canvas -->
+<div class="col-span-12 lg:col-span-8 space-y-12">
+<!-- Section 1: Annual Emission Proof -->
+<div class="glass-card p-8 rounded-xl shadow-[0px_0px_40px_rgba(23,29,29,0.06)]">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary" data-icon="fact_check">fact_check</span>
+<h2 class="text-xl font-manrope font-bold text-primary">Annual Emission Proof</h2>
+</div>
+<div class="space-y-8">
+<div>
+<label class="block font-label text-[10px] uppercase tracking-wider text-outline mb-2">Upload Emission Audit (PDF)</label>
+<div class="relative group">
+<div class="border-2 border-dashed border-outline-variant/30 rounded-xl p-10 flex flex-col items-center justify-center bg-surface-container-low group-hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-4xl text-outline mb-3" data-icon="cloud_upload">cloud_upload</span>
+<p class="text-sm text-on-surface-variant mb-1">Drag and drop files or <span class="text-primary font-semibold">browse</span></p>
+<p class="text-xs text-outline">Supported: FY2025 Emission Audit, ISO 14064 Reports</p>
+</div>
+<input class="absolute inset-0 opacity-0 cursor-pointer" type="file"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label text-[10px] uppercase tracking-wider text-outline mb-2">Total Tonnes CO2 to Offset</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 focus:ring-1 focus:ring-primary/30 focus:bg-surface-container-lowest transition-all" placeholder="0.00" type="number"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-outline">MT CO2e</span>
+</div>
+</div>
+<div>
+<label class="block font-label text-[10px] uppercase tracking-wider text-outline mb-2">Reporting Period</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg p-4 focus:ring-1 focus:ring-primary/30 focus:bg-surface-container-lowest transition-all appearance-none">
+<option>Fiscal Year 2024-25</option>
+<option>Q1-Q2 2025</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Allocation Calculator -->
+<div class="bg-primary p-1 rounded-xl shadow-lg">
+<div class="bg-surface-container-lowest rounded-[calc(0.75rem-2px)] p-8">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="calculate">calculate</span>
+<h2 class="text-xl font-manrope font-bold text-primary">Token Allocation Calculator</h2>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">Live Estimate</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+<div class="space-y-1">
+<p class="text-[10px] font-label uppercase tracking-widest text-outline">Requested Amount</p>
+<p class="text-2xl font-manrope font-extrabold text-on-surface">1,250 <span class="text-sm font-normal text-outline">Tokens</span></p>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] font-label uppercase tracking-widest text-outline">Estimated Cost (USD)</p>
+<p class="text-2xl font-manrope font-extrabold text-primary">$31,250.00</p>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] font-label uppercase tracking-widest text-outline">Available Registry Pool</p>
+<p class="text-2xl font-manrope font-extrabold text-secondary">42,890 <span class="text-sm font-normal text-outline">Remaining</span></p>
+</div>
+</div>
+<div class="p-4 bg-surface-container rounded-lg border border-outline-variant/10">
+<p class="text-xs text-on-surface-variant leading-relaxed">
+<span class="font-bold">Note:</span> Market rates for Blue Carbon tokens are updated every 6 hours. This estimation is valid for the next 45 minutes of your session.
+                                </p>
+</div>
+</div>
+</div>
+<!-- Section 3: Payment & Submission -->
+<div class="glass-card p-8 rounded-xl shadow-[0px_0px_40px_rgba(23,29,29,0.06)] flex flex-col md:flex-row items-end gap-6">
+<div class="flex-1 w-full">
+<label class="block font-label text-[10px] uppercase tracking-wider text-outline mb-2">Preferred Payment Method</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-lg p-4 pr-12 focus:ring-1 focus:ring-primary/30 focus:bg-surface-container-lowest transition-all appearance-none">
+<option>Off-chain Bank Transfer (SWIFT/SEPA)</option>
+<option>Digital Asset Settlement (USDC)</option>
+<option>Registry Credit Line</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+</div>
+<button class="w-full md:w-auto px-10 py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-manrope font-bold rounded-lg shadow-xl shadow-primary/10 hover:shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                            Submit Request
+                        </button>
+</div>
+</div>
+<!-- Sidebar / Info Panel -->
+<aside class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Current Balance Mini-Card -->
+<div class="relative overflow-hidden rounded-xl bg-primary text-on-primary p-6 shadow-xl">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="bg-on-primary/10 px-2 py-1 rounded text-[10px] font-bold tracking-widest uppercase">Portfolio Status</span>
+</div>
+<p class="text-[10px] font-label uppercase tracking-widest text-primary-fixed-dim/70 mb-1">Current Verified Balance</p>
+<h3 class="text-3xl font-manrope font-extrabold mb-4">8,420.00 <span class="text-sm font-normal opacity-60 tracking-normal">VCT</span></h3>
+<div class="flex items-center gap-2 text-xs text-primary-fixed">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+<span>+12% from last quarter</span>
+</div>
+</div>
+<!-- Decorative background element -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+</div>
+<!-- Policy Brief -->
+<div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/15">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="policy">policy</span>
+<h4 class="font-manrope font-bold text-primary">Policy Brief</h4>
+</div>
+<div class="space-y-4 text-sm text-on-surface-variant leading-relaxed">
+<p>
+<span class="font-bold text-on-surface">90-Day Expiry Rule:</span> All institutional tokens requested for voluntary offsetting must be retired or allocated within 90 days of issuance.
+                            </p>
+<p>
+                                Failure to allocate tokens within this window results in automatic transition to the "Reserved Buffer" state for registry liquidity.
+                            </p>
+<a class="inline-flex items-center gap-1 text-primary font-semibold hover:underline" href="#">
+                                View full compliance guide
+                                <span class="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Visual Accent Card -->
+<div class="rounded-xl overflow-hidden aspect-[4/3] relative group shadow-lg">
+<img alt="Blue carbon ecosystem" class="absolute inset-0 w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="cinematic wide shot of pristine mangrove forest meeting the ocean with emerald clear water and lush green foliage under soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpKxy6p3qaOAz7sncnS3cpqKcLFkR7LjgZBH-eYdgQcNXrPFcaQYpqInHQ-sCrHDvB6aZE1KYB6KGcxd9U94CBSOdbWWKu6syogkrsUgu-CHihVnnbDUykzk0YWQmU8s9AEQQXzWa--9vCfgnEEoV7yVEHPIlkr8Ms6XxCrbgd8obJ4Z85oFrV-Uqf_oGAp7lswkjXUqvs-q2qXmZ1H7MSwW4oCtfIuAIcb1vgiCiCSCRZcdzYXmGM7QzoY03gP1UV209mq7lzbvtQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="text-on-primary font-manrope font-bold text-sm">Protecting Mangrove Ecosystems</p>
+<p class="text-on-primary/70 text-[10px] uppercase tracking-wider">Project ID: VER-2024-SEA</p>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+</body></html>

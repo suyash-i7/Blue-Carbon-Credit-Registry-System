@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard | Veridian Registry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f5fafa",
+                        "surface-container": "#eaefef",
+                        "on-surface": "#171d1d",
+                        "secondary-fixed": "#acefe7",
+                        "surface-tint": "#006972",
+                        "on-primary-fixed": "#001f23",
+                        "tertiary": "#743b24",
+                        "primary-fixed": "#9ff0fb",
+                        "tertiary-fixed": "#ffdbce",
+                        "on-primary-fixed-variant": "#004f56",
+                        "secondary-container": "#a9ece5",
+                        "surface-container-highest": "#dee3e3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#286d67",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2c3132",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#9becf7",
+                        "on-background": "#171d1d",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e4e9e9",
+                        "primary": "#00535b",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#915239",
+                        "on-surface-variant": "#3e494a",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "primary-fixed-dim": "#82d3de",
+                        "surface-variant": "#dee3e3",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#eff5f5",
+                        "inverse-on-surface": "#edf2f2",
+                        "on-secondary-fixed": "#00201e",
+                        "secondary": "#236863",
+                        "on-tertiary-fixed": "#380d00",
+                        "secondary-fixed-dim": "#90d3cb",
+                        "outline-variant": "#bec8ca",
+                        "error": "#ba1a1a",
+                        "surface": "#f5fafa",
+                        "outline": "#6f797a",
+                        "surface-dim": "#d6dbdb",
+                        "on-tertiary-container": "#ffd7c9",
+                        "on-tertiary-fixed-variant": "#6f3720",
+                        "primary-container": "#006d77",
+                        "on-secondary-fixed-variant": "#00504b",
+                        "inverse-primary": "#82d3de",
+                        "surface-bright": "#f5fafa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body antialiased">
+<!-- Sidebar Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-6 z-40 bg-white/80 dark:bg-slate-950/80 h-screen w-64 border-r border-slate-200/15 shadow-[40px_0_40px_rgba(23,29,29,0.06)] backdrop-blur-[32px]">
+<div class="mb-10">
+<h1 class="text-lg font-bold text-[#00535b] dark:text-teal-400 font-headline tracking-tight">The Arboretum</h1>
+<p class="text-xs text-slate-500 font-label tracking-wider uppercase">Verified Registry Node</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Navigation Items Mapping -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:pl-2 transition-all duration-300 ease-in-out font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="font-label">Registry Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#006d77]/10 text-[#00535b] rounded-lg font-bold translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-label">Verification Queue</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:pl-2 transition-all duration-300 ease-in-out font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label">User Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:pl-2 transition-all duration-300 ease-in-out font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="tsunami">tsunami</span>
+<span class="font-label">Minting Portal</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:pl-2 transition-all duration-300 ease-in-out font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label">Audit Logs</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/15 space-y-2">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 text-sm hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help_center">help_center</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 text-sm hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="menu_book">menu_book</span>
+<span>Documentation</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-8 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center w-full px-8 h-16 sticky top-0 z-50 mb-8 bg-[#f5fafa]/80 backdrop-blur-xl">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-bold tracking-tight text-[#00535b] font-headline">Verification Queue</h2>
+<div class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-bold tracking-widest uppercase">Admin Mode</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary cursor-pointer transition-colors" data-icon="notifications">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 hover:opacity-90 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm" data-icon="account_balance_wallet">account_balance_wallet</span>
+                    Connect Wallet
+                </button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a professional male administrator in a clean modern office setting with natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2Ei4GD6f6s2L1K4CTL1aL-A5pZHBexzmAadyZ7h04wWi2Qj9FUpSI8rbMAnIooAo_AJ_eKKEuOqOiRKrUKKfSzdeeVHkcyFzxVAyBXT7wvY0_CfM5_a2aPm0zsUCpBhuh4XPTJjau1p1iDmHheHBP_7PAU941j5NGobfWLKgR4OF3hb9ybFdG5Q1Jjdfu6BqL7oBhG9QfntpgdEMK6gnjMGg7Y2226ceS8_mlg81IqXw6pERlpsS6ZFUulb3vlNtqkTecGQRSh-ng"/>
+</div>
+</div>
+</header>
+<!-- Global Metrics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[40px_0_40px_rgba(23,29,29,0.04)] flex flex-col justify-between border border-outline-variant/10">
+<div>
+<p class="text-xs font-label uppercase tracking-widest text-outline mb-1">Total Carbon Offset</p>
+<h3 class="text-3xl font-headline font-extrabold text-primary">1.24M <span class="text-sm font-medium text-secondary">tCO2e</span></h3>
+</div>
+<div class="mt-4 flex items-center gap-2 text-on-secondary-container bg-secondary-container/30 px-3 py-1 rounded-full w-fit">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+<span class="text-xs font-bold">+12.4% this month</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[40px_0_40px_rgba(23,29,29,0.04)] flex flex-col justify-between border border-outline-variant/10">
+<div>
+<p class="text-xs font-label uppercase tracking-widest text-outline mb-1">Active Tokens</p>
+<h3 class="text-3xl font-headline font-extrabold text-primary">842,000 <span class="text-sm font-medium text-secondary">VERI</span></h3>
+</div>
+<div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="token">token</span>
+<span>Distributed across 42 nodes</span>
+</div>
+</div>
+<div class="bg-primary text-on-primary p-6 rounded-xl shadow-[40px_0_40px_rgba(23,29,29,0.06)] flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-xs font-label uppercase tracking-widest text-on-primary/70 mb-1">System Pool Balance</p>
+<h3 class="text-3xl font-headline font-extrabold">$4.82M <span class="text-sm font-medium text-on-primary/80">USD</span></h3>
+</div>
+<div class="mt-4 flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full w-fit backdrop-blur relative z-10">
+<span class="material-symbols-outlined text-sm" data-icon="account_balance">account_balance</span>
+<span class="text-xs font-bold">Node Reserve Healthy</span>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-secondary-container/20 rounded-full blur-3xl"></div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Verification Queue Table (2/3 width) -->
+<section class="lg:col-span-2 space-y-6">
+<div class="flex justify-between items-center px-2">
+<h3 class="text-lg font-headline font-bold text-primary">Pending Verifications</h3>
+<button class="text-primary text-sm font-bold flex items-center gap-2 hover:underline">
+                        View All History <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/10">
+<th class="px-6 py-4 text-xs font-label uppercase tracking-widest text-outline">Project Name</th>
+<th class="px-6 py-4 text-xs font-label uppercase tracking-widest text-outline">Region</th>
+<th class="px-6 py-4 text-xs font-label uppercase tracking-widest text-outline">Status</th>
+<th class="px-6 py-4 text-xs font-label uppercase tracking-widest text-outline">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="forest">forest</span>
+</div>
+<div>
+<p class="font-bold text-primary text-sm">Amazonia Reforest Alpha</p>
+<p class="text-[10px] text-outline font-medium">ID: PRJ-2024-001</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant font-medium">Brazil, Pará</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 rounded bg-surface-container-highest text-outline text-[10px] font-bold tracking-widest uppercase">Under Review</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex gap-2">
+<button class="p-2 hover:bg-primary/10 text-primary rounded-lg transition-colors" title="Verify Details">
+<span class="material-symbols-outlined text-xl" data-icon="fact_check">fact_check</span>
+</button>
+<button class="p-2 hover:bg-secondary/10 text-secondary rounded-lg transition-colors" title="Approve Project">
+<span class="material-symbols-outlined text-xl" data-icon="verified">verified</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined" data-icon="wind_power">wind_power</span>
+</div>
+<div>
+<p class="font-bold text-primary text-sm">North Sea Wind Farm B2</p>
+<p class="text-[10px] text-outline font-medium">ID: PRJ-2024-089</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant font-medium">North Sea, UK</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container text-[10px] font-bold tracking-widest uppercase">Verified</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex gap-2">
+<button class="p-2 hover:bg-primary/10 text-primary rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="fact_check">fact_check</span>
+</button>
+<button class="p-2 hover:bg-secondary/10 text-secondary rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-tertiary-fixed/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="solar_power">solar_power</span>
+</div>
+<div>
+<p class="font-bold text-primary text-sm">Sahara Sun Initiative</p>
+<p class="text-[10px] text-outline font-medium">ID: PRJ-2024-112</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant font-medium">Morocco, Ouarzazate</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 rounded bg-surface-container-highest text-outline text-[10px] font-bold tracking-widest uppercase">Pending Site Audit</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex gap-2">
+<button class="p-2 hover:bg-primary/10 text-primary rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="fact_check">fact_check</span>
+</button>
+<button class="p-2 hover:bg-secondary/10 text-secondary rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="verified">verified</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-4 bg-surface-container-low/30 border-t border-outline-variant/5 flex justify-between items-center">
+<p class="text-xs text-outline font-medium italic">Displaying 3 of 12 pending requests</p>
+<div class="flex gap-2">
+<button class="p-1 px-3 border border-outline-variant/30 rounded text-xs font-bold hover:bg-surface-container-high transition-colors">Prev</button>
+<button class="p-1 px-3 border border-outline-variant/30 rounded text-xs font-bold hover:bg-surface-container-high transition-colors">Next</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Minting & Admin Controls -->
+<aside class="space-y-8">
+<!-- Mint Tokens Glass Card -->
+<div class="glass-card p-6 rounded-xl border border-white/50 shadow-lg relative overflow-hidden">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="token" style="font-variation-settings: 'FILL' 1;">token</span>
+<h3 class="font-headline font-bold text-primary">Mint New Credits</h3>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-low p-4 rounded-lg">
+<label class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Target Project</label>
+<p class="font-bold text-primary truncate">North Sea Wind Farm B2</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-lg">
+<label class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Approved Area</label>
+<p class="font-bold text-primary">1,240 <span class="text-[10px] font-medium">HECTARES</span></p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg">
+<label class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Audit Score</label>
+<p class="font-bold text-secondary">9.8/10</p>
+</div>
+</div>
+<div class="bg-primary/5 p-4 rounded-lg border border-primary/10">
+<div class="flex justify-between items-center mb-2">
+<label class="text-[10px] font-label uppercase tracking-widest text-primary block">Estimated Tokens</label>
+<span class="text-xs font-bold text-primary">48,200 VERI</span>
+</div>
+<div class="w-full bg-primary/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-3/4"></div>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md hover:translate-y-[-1px] transition-all">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+                            Trigger On-Chain Minting
+                        </button>
+</div>
+</div>
+<!-- Admin System Controls -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant/10">
+<h3 class="font-headline font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="settings_suggest">settings_suggest</span>
+                        System Controls
+                    </h3>
+<div class="space-y-3">
+<button class="w-full flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg group hover:bg-primary transition-all">
+<span class="text-xs font-bold text-on-surface group-hover:text-on-primary">Pause Minting Portal</span>
+<span class="material-symbols-outlined text-error group-hover:text-on-primary" data-icon="pause_circle">pause_circle</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg group hover:bg-primary transition-all">
+<span class="text-xs font-bold text-on-surface group-hover:text-on-primary">Network Sync Status</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[8px] font-extrabold uppercase tracking-tighter">Healthy</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg group hover:bg-primary transition-all">
+<span class="text-xs font-bold text-on-surface group-hover:text-on-primary">Export Master Ledger</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-primary" data-icon="file_download">file_download</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+<!-- Audit Log Micro-Feed (Asymmetric Layout) -->
+<section class="mt-12 mb-8">
+<h3 class="text-lg font-headline font-bold text-primary mb-6 ml-2">Recent Registry Actions</h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-secondary shadow-sm">
+<p class="text-[10px] font-label text-outline uppercase tracking-widest mb-1">Today 14:22</p>
+<p class="text-xs font-bold text-primary">Node Verifier-7 approved Amazonia Reforest documentation.</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-primary shadow-sm">
+<p class="text-[10px] font-label text-outline uppercase tracking-widest mb-1">Today 11:05</p>
+<p class="text-xs font-bold text-primary">System mint of 12,000 credits completed for Project ID 441.</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-outline shadow-sm">
+<p class="text-[10px] font-label text-outline uppercase tracking-widest mb-1">Yesterday 18:45</p>
+<p class="text-xs font-bold text-primary">Admin "Sarah Miller" updated global registry parameters.</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-secondary shadow-sm">
+<p class="text-[10px] font-label text-outline uppercase tracking-widest mb-1">Yesterday 09:12</p>
+<p class="text-xs font-bold text-primary">Successful smart contract audit for the Arboretum DAO.</p>
+</div>
+</div>
+</section>
+</main>
+</body></html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registry Enrollment | The Ethereal Registry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#171d1d",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface": "#f5fafa",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#9ff0fb",
+                        "secondary-container": "#a9ece5",
+                        "on-secondary-container": "#286d67",
+                        "on-surface-variant": "#3e494a",
+                        "inverse-surface": "#2c3132",
+                        "surface-container-highest": "#dee3e3",
+                        "primary-container": "#006d77",
+                        "on-tertiary-fixed": "#380d00",
+                        "on-tertiary-container": "#ffd7c9",
+                        "on-primary-container": "#9becf7",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#dee3e3",
+                        "on-secondary-fixed": "#00201e",
+                        "primary-fixed-dim": "#82d3de",
+                        "on-tertiary-fixed-variant": "#6f3720",
+                        "surface-dim": "#d6dbdb",
+                        "surface-container-high": "#e4e9e9",
+                        "surface-container": "#eaefef",
+                        "tertiary-container": "#915239",
+                        "surface-bright": "#f5fafa",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#006972",
+                        "on-primary-fixed": "#001f23",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "outline-variant": "#bec8ca",
+                        "secondary-fixed-dim": "#90d3cb",
+                        "primary": "#00535b",
+                        "tertiary-fixed": "#ffdbce",
+                        "tertiary": "#743b24",
+                        "secondary-fixed": "#acefe7",
+                        "inverse-primary": "#82d3de",
+                        "on-primary-fixed-variant": "#004f56",
+                        "on-error": "#ffffff",
+                        "on-background": "#171d1d",
+                        "surface-container-low": "#eff5f5",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#edf2f2",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#236863",
+                        "outline": "#6f797a",
+                        "on-secondary-fixed-variant": "#00504b",
+                        "background": "#f5fafa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f5fafa; color: #171d1d; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="h-screen w-64 fixed left-0 border-r border-[#bec8ca]/15 flex flex-col py-8 gap-4 bg-[#f5fafa] dark:bg-slate-900 z-50">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<h2 class="font-manrope uppercase text-xs tracking-widest text-slate-500">Registry Enrollment</h2>
+<p class="text-[10px] text-primary font-bold">Step 2 of 5: Verification</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 font-inter text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined">domain</span>
+                Organization
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#00535b] dark:text-teal-300 font-bold bg-[#006d77]/5 rounded-r-full hover:translate-x-1 transition-transform duration-200 font-inter text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                Verification
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 font-inter text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined">upload_file</span>
+                Documents
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 font-inter text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+                Wallet
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 font-inter text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+                Review
+            </a>
+</nav>
+<div class="px-4 mt-auto space-y-1">
+<button class="w-full mb-6 py-3 bg-primary text-on-primary rounded-xl font-manrope font-semibold text-sm hover:opacity-90 active:scale-95 transition-all">
+                Save Progress
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-inter text-sm" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+                Support
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-inter text-sm" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 flex-1 relative min-h-screen pb-20">
+<!-- TopNavBar (Execution from JSON) -->
+<header class="flex justify-between items-center px-8 py-4 w-full sticky top-0 z-40 backdrop-blur-xl bg-opacity-70 bg-[#f5fafa] dark:bg-slate-900">
+<div class="flex items-center gap-12">
+<h1 class="text-xl font-bold tracking-tighter text-[#00535b] dark:text-teal-500 font-manrope">The Ethereal Registry</h1>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-slate-500 dark:text-slate-400 font-medium font-manrope tracking-tight font-semibold hover:text-[#006d77] transition-colors duration-300" href="#">Marketplace</a>
+<a class="text-[#00535b] border-b-2 border-[#00535b] dark:text-teal-400 dark:border-teal-400 pb-1 font-manrope tracking-tight font-semibold" href="#">Registry</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium font-manrope tracking-tight font-semibold hover:text-[#006d77] transition-colors duration-300" href="#">Analytics</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium font-manrope tracking-tight font-semibold hover:text-[#006d77] transition-colors duration-300" href="#">Resources</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-slate-500">
+<span class="material-symbols-outlined hover:text-primary cursor-pointer">notifications</span>
+<span class="material-symbols-outlined hover:text-primary cursor-pointer">help_outline</span>
+</div>
+<button class="px-6 py-2 bg-primary text-on-primary rounded-xl font-manrope font-semibold text-sm active:opacity-80 transition-all">
+                    Connect Wallet
+                </button>
+</div>
+</header>
+<div class="max-w-6xl mx-auto px-8 pt-12 grid grid-cols-12 gap-12">
+<!-- Registration Form Content -->
+<div class="col-span-8 space-y-12">
+<section>
+<h2 class="text-4xl font-manrope font-bold tracking-tight text-on-surface mb-2">Corporate Registration</h2>
+<p class="text-on-surface-variant font-body mb-8">Establish your institutional presence on the global carbon ledger.</p>
+<div class="space-y-8">
+<!-- Step 1: Company Profile -->
+<div class="glass-card p-8 rounded-xl bg-surface-container-lowest shadow-[0_0_40px_rgba(23,29,29,0.06)]">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-sm">corporate_fare</span>
+</div>
+<h3 class="font-manrope font-bold text-xl">1. Company Profile</h3>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="label-md uppercase tracking-widest text-[10px] font-bold text-outline">Legal Entity Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary/30 focus:bg-surface-container-lowest transition-all" placeholder="e.g. Arboreal Holdings Ltd." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="label-md uppercase tracking-widest text-[10px] font-bold text-outline">Industry Sector</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary/30 transition-all">
+<option>Technology &amp; Logistics</option>
+<option>Manufacturing</option>
+<option>Energy &amp; Utilities</option>
+<option>Financial Services</option>
+</select>
+</div>
+<div class="col-span-2 space-y-2">
+<label class="label-md uppercase tracking-widest text-[10px] font-bold text-outline">HQ Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-3 text-outline text-lg">location_on</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl pl-12 pr-4 py-3 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="Search for city or country" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 2: ESG Data -->
+<div class="p-8 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-sm">monitoring</span>
+</div>
+<h3 class="font-manrope font-bold text-xl">2. ESG &amp; Sustainability Data</h3>
+</div>
+<div class="space-y-6">
+<div class="p-6 border-2 border-dashed border-outline-variant rounded-xl bg-surface-container-lowest/50 text-center hover:bg-surface-container-lowest transition-all cursor-pointer">
+<span class="material-symbols-outlined text-4xl text-outline mb-2">cloud_upload</span>
+<p class="font-body font-medium text-on-surface">Upload Annual Emission Proof</p>
+<p class="text-xs text-outline mt-1">PDF, XLXS or JSON (Max 20MB)</p>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="label-md uppercase tracking-widest text-[10px] font-bold text-outline">Net Zero Target Year</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="2040" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="label-md uppercase tracking-widest text-[10px] font-bold text-outline">Verification Standard</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary/30 transition-all">
+<option>SBTi (Science Based Targets)</option>
+<option>Gold Standard</option>
+<option>VCS (Verra)</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 3: Admin Contact -->
+<div class="p-8 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-sm">support_agent</span>
+</div>
+<h3 class="font-manrope font-bold text-xl">3. Administrative Contact</h3>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="label-md uppercase tracking-widest text-[10px] font-bold text-outline">Full Name</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary/30 transition-all" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="label-md uppercase tracking-widest text-[10px] font-bold text-outline">Work Email</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary/30 transition-all" type="email"/>
+</div>
+</div>
+</div>
+<!-- Step 4: Wallet Setup -->
+<div class="p-8 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-sm">account_balance_wallet</span>
+</div>
+<h3 class="font-manrope font-bold text-xl">4. Institutional Wallet Setup</h3>
+</div>
+<div class="flex items-center justify-between p-6 bg-surface-container-lowest rounded-xl">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-primary">security</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Registry Vault™</h4>
+<p class="text-xs text-on-surface-variant">Secure storage for your Ethereal tokens.</p>
+</div>
+</div>
+<button class="px-5 py-2 border border-outline-variant text-primary font-manrope font-bold text-xs rounded-lg hover:bg-surface-container-low transition-all">
+                                    Initialize Vault
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<div class="flex items-center justify-end gap-6 pt-8">
+<button class="text-primary font-manrope font-bold hover:underline">Cancel Registration</button>
+<button class="px-10 py-4 bg-primary text-on-primary rounded-xl font-manrope font-bold text-lg hover:opacity-90 shadow-xl transition-all">
+                        Complete Registration
+                    </button>
+</div>
+</div>
+<!-- Sidebar Info Column -->
+<aside class="col-span-4 space-y-8 sticky top-24 h-fit">
+<!-- 90-Day Policy Card -->
+<div class="glass-card p-6 rounded-2xl bg-primary-container text-on-primary-container relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary-fixed">schedule</span>
+<span class="label-md uppercase tracking-widest text-[10px] font-bold opacity-80">Policy Notice</span>
+</div>
+<h4 class="font-manrope font-extrabold text-2xl mb-3 leading-tight">90-Day Token Expiry Policy</h4>
+<p class="text-sm opacity-90 leading-relaxed font-body">
+                            The Ethereal Registry enforces a rolling 90-day validity window for unretired credits. This ensures liquidity and accurate biological carbon reporting across the network.
+                        </p>
+</div>
+<!-- Decorative background element -->
+<div class="absolute -bottom-4 -right-4 w-24 h-24 bg-primary-fixed/10 rounded-full blur-3xl"></div>
+</div>
+<!-- Marketplace Benefits -->
+<div class="p-8 rounded-2xl bg-surface-container-high">
+<h4 class="font-manrope font-bold text-lg mb-6">Registry Benefits</h4>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<div>
+<p class="text-sm font-bold text-on-surface">Direct Liquidity</p>
+<p class="text-xs text-on-surface-variant">Instant secondary market access for your institutional offsets.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">shield</span>
+<div>
+<p class="text-sm font-bold text-on-surface">Immutable Verification</p>
+<p class="text-xs text-on-surface-variant">On-chain auditing for ESG annual reports and stakeholder transparency.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">public</span>
+<div>
+<p class="text-sm font-bold text-on-surface">Global Reach</p>
+<p class="text-xs text-on-surface-variant">Trade credits across 45+ registered international eco-corridors.</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Image Card -->
+<div class="relative h-64 rounded-2xl overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="misty mountain peak with coniferous forest in early morning light soft teal and grey tones aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsyyDbmH3gXITuU_d5IF2MrgSWFk9r-3uoKS7clo78fz-NUc-LIar69RWtkvQMHCg1o_t3uFtWurq64-Pb8UFIBQ2ySBwmYEiWS7Gqw-lqhuaG0guyFLEAQ7HPlZkIssxCzxojkRYqTORG5zkq5_ZrdYlCqbnTSHZDSNhAzQ7nbsuKvdEl6t1vv7se1U4FsENSZ8Kfg8B6dlT8zwx_NFP4L-AKmlj83VnX0vGjZIOtNiQ0rkAmhKpGWgpa1p7ZI4JJH9XhufJSBRDg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<p class="text-white font-manrope font-bold text-lg">Guardian of the Canopy</p>
+<p class="text-white/80 text-xs">A certified Ethereal restoration zone</p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</body></html>
