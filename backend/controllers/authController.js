@@ -27,7 +27,7 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // 3. Role/Approval Logic
-    const ADMIN_EMAIL = '2k24.csim.2414218@gmail.com';
+    const ADMIN_EMAIL = 'carbonadmin@gmail.com';
     let isApproved = false;
     let finalRole = role;
 
