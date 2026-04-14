@@ -72,7 +72,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-  const ADMIN_EMAIL = '2k24.csim.2414218@gmail.com';
+  const ADMIN_EMAIL = 'carbonadmin@gmail.com';
 
   try {
     // 1. Check if user exists

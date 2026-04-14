@@ -79,7 +79,7 @@ npm run dev
 ## 📅 Platform Workflow
 
 1.  **NGO**: Registers organization -> Submits Project (Area, Location, Documents) -> Status set to `Pending`.
-2.  **Admin**: Logs in via `2k24.csim.2414218@gmail.com` -> Reviews Queue -> Approves User/Project.
+2.  **Admin**: Logs in via `carboncredit@gmail.com` -> Reviews Queue -> Approves User/Project.
 3.  **Blockchain Action**: Approval triggers the smart contract to **Mint** tokens to the NGO's wallet.
 4.  **Company**: Registers -> Requests Tokens -> Admin Approves -> Tokens **Transferred** to Corporate Wallet.
 5.  **Tracking**: All tokens are valid for 90 days as per the `CarbonToken.sol` logic.

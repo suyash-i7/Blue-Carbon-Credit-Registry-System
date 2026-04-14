@@ -106,8 +106,8 @@ exports.approveTokenRequest = async (req, res) => {
 
     // 1. Blockchain Transfer
     const txHash = await blockchainService.transferTokens(
-      request.company_id.wallet_address, 
-      request.amount, 
+      request.company_id.wallet_address,
+      request.amount,
       90
     );
 
