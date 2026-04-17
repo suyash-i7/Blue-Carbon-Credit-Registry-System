@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { protect, authorize } = require('../middleware/auth');
-const { requestTokens, getTokens } = require('../controllers/companyController');
+const { buyTokens, getTokens } = require('../controllers/companyController');
 
 router.use(protect);
 router.use(authorize('company'));
 
-router.post('/request-tokens', requestTokens);
+router.post('/buy-tokens', buyTokens);
 router.get('/tokens', getTokens);
 
 module.exports = router;
