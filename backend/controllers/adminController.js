@@ -16,6 +16,20 @@ exports.getPendingUsers = async (req, res) => {
   }
 };
 
+exports.getAllUsers = async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .in('role', ['ngo', 'company']);
+
+    if (error) throw error;
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.approveUser = async (req, res) => {
   try {
     const { data, error } = await supabase

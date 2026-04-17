@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Users, TreePine, History, Check, X, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
 import axios from 'axios';
 
 const AdminDashboard = () => {
   const [pendingUsers, setPendingUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const [projects, setProjects] = useState([]);
   const [tokenRequests, setTokenRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,12 +19,14 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const [usersRes, projectsRes, tokensRes] = await Promise.all([
+      const [usersRes, allUsersRes, projectsRes, tokensRes] = await Promise.all([
         axios.get('/api/admin/pending-users'),
+        axios.get('/api/admin/users'),
         axios.get('/api/admin/projects'),
         axios.get('/api/admin/token-requests')
       ]);
       setPendingUsers(usersRes.data);
+      setAllUsers(allUsersRes.data);
       setProjects(projectsRes.data);
       setTokenRequests(tokensRes.data);
     } catch (err) {
@@ -90,10 +94,30 @@ const AdminDashboard = () => {
 
       {/* Admin Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <StatCard label="Total Carbon Minted" value={`${projects.filter(p => p.status === 'approved').reduce((acc, curr) => acc + Number(curr.credits_generated || 0), 0)} T`} sub="LIFETIME" />
-        <StatCard label="Pending Verifications" value={pendingUsers.length + projects.filter(p => p.status === 'pending').length} sub="ACTION REQUIRED" />
-        <StatCard label="Registered NGOs" value="12" sub="ACTIVE" />
-        <StatCard label="Corporate Clients" value="4" sub="ACTIVE" />
+        <StatCard 
+          label="Active Minted Balance" 
+          value={`${projects.filter(p => p.status === 'approved' && (new Date(p.created_at).getTime() > Date.now() - 365 * 24 * 60 * 60 * 1000)).reduce((acc, curr) => acc + Number(curr.credits_generated || 0), 0) - tokenRequests.filter(t => t.status === 'approved').reduce((acc, curr) => acc + Number(curr.amount || 0), 0)} T`} 
+          sub="AVAILABLE CREDITS" 
+          linkTo="/admin/minted-carbon"
+        />
+        <StatCard 
+          label="Pending Projects" 
+          value={projects.filter(p => p.status === 'pending').length} 
+          sub="VERIFICATIONS WAITING"
+          linkTo="/admin/pending-projects"
+        />
+        <StatCard 
+          label="Registered NGOs" 
+          value={allUsers.filter(u => u.role === 'ngo').length} 
+          sub="TOTAL APPROVED"
+          linkTo="/admin/ngos"
+        />
+        <StatCard 
+          label="Corporate Clients" 
+          value={allUsers.filter(u => u.role === 'company').length} 
+          sub="TOTAL APPROVED"
+          linkTo="/admin/companies"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -199,13 +223,13 @@ const QueueItem = ({ type, title, subtitle, onApprove, icon, colorClass }) => (
   </div>
 );
 
-const StatCard = ({ label, value, sub }) => (
-  <div className="bg-white rounded-xl p-6 relative overflow-hidden group border border-gray-200 shadow-sm">
+const StatCard = ({ label, value, sub, linkTo }) => (
+  <Link to={linkTo} className="bg-white rounded-xl p-6 relative overflow-hidden group border border-gray-200 shadow-sm block hover:shadow-md transition-shadow cursor-pointer">
     <div className="absolute top-0 right-0 w-24 h-24 bg-[#E7F3F2] rounded-bl-full -mr-8 -mt-8 group-hover:scale-110 transition-transform" />
     <p className="text-xs font-bold text-gray-500 uppercase tracking-widest relative z-10">{label}</p>
     <h4 className="text-3xl font-manrope font-extrabold mt-1 text-gray-900 relative z-10">{value}</h4>
     <p className="text-[10px] font-bold text-[#0F766E] mt-2 tracking-tighter relative z-10">{sub}</p>
-  </div>
+  </Link>
 );
 
 export default AdminDashboard;

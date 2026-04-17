@@ -8,6 +8,10 @@ import CompanyRegister from './pages/auth/CompanyRegister';
 import NGODashboard from './pages/ngo/Dashboard';
 import SubmitProject from './pages/ngo/SubmitProject';
 import AdminDashboard from './pages/admin/Dashboard';
+import MintedCarbonPage from './pages/admin/MintedCarbonPage';
+import PendingProjectsPage from './pages/admin/PendingProjectsPage';
+import NGOsPage from './pages/admin/NGOsPage';
+import CompaniesPage from './pages/admin/CompaniesPage';
 import CompanyDashboard from './pages/company/Dashboard';
 import Navbar from './components/common/Navbar';
 
@@ -28,6 +32,10 @@ function App() {
               <Route path="/ngo/dashboard" element={<NGODashboard />} />
               <Route path="/ngo/submit" element={<SubmitProject />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/minted-carbon" element={<MintedCarbonPage />} />
+              <Route path="/admin/pending-projects" element={<PendingProjectsPage />} />
+              <Route path="/admin/ngos" element={<NGOsPage />} />
+              <Route path="/admin/companies" element={<CompaniesPage />} />
               <Route path="/company/dashboard" element={<CompanyDashboard />} />
               
               <Route path="*" element={<Navigate to="/" replace />} />
