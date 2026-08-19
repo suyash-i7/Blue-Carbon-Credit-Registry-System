@@ -50,9 +50,9 @@ const AdminDashboard = () => {
     try {
       await axios.post('/api/admin/approve-project', { id });
       setProjects(prev => prev.map(p => p.id === id ? { ...p, status: 'approved' } : p));
-      alert('Project approved and tokens minted!');
+      alert('Project approved and carbon credits generated in registry!');
     } catch (err) {
-      alert('Failed to approve project. Ensure blockchain node is running.');
+      alert('Failed to approve project. Please check backend connection.');
     }
   };
 
@@ -60,7 +60,7 @@ const AdminDashboard = () => {
     try {
       await axios.post('/api/admin/approve-request', { id });
       setTokenRequests(prev => prev.map(t => t.id === id ? { ...t, status: 'approved' } : t));
-      alert('Tokens transferred to corporate wallet!');
+      alert('Carbon credits approved and allocated to corporate account!');
     } catch (err) {
       alert('Failed to approve token request.');
     }
@@ -69,7 +69,7 @@ const AdminDashboard = () => {
   if (loading) return (
     <div className="flex flex-col items-center justify-center py-20 gap-4">
       <Loader2 className="animate-spin text-[#0F766E]" size={48} />
-      <p className="text-gray-500 font-bold">Synchronizing with Blockchain Ledger...</p>
+      <p className="text-gray-500 font-bold">Loading Registry Queue...</p>
     </div>
   );
 
@@ -81,7 +81,7 @@ const AdminDashboard = () => {
             <ShieldCheck className="text-[#0F766E]" size={36} />
             Registry Administration
           </h1>
-          <p className="text-gray-500 font-medium">System Oversight & Blockchain Governance</p>
+          <p className="text-gray-500 font-medium">System Oversight & Carbon Credit Governance</p>
         </div>
       </div>
 
@@ -95,7 +95,7 @@ const AdminDashboard = () => {
       {/* Admin Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <StatCard 
-          label="Active Minted Balance" 
+          label="Active Issued Balance" 
           value={`${projects.filter(p => p.status === 'approved' && (new Date(p.created_at).getTime() > Date.now() - 365 * 24 * 60 * 60 * 1000)).reduce((acc, curr) => acc + Number(curr.credits_generated || 0), 0) - tokenRequests.filter(t => t.status === 'approved').reduce((acc, curr) => acc + Number(curr.amount || 0), 0)} T`} 
           sub="AVAILABLE CREDITS" 
           linkTo="/admin/minted-carbon"
@@ -124,7 +124,7 @@ const AdminDashboard = () => {
         {/* Verification Queue */}
         <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="px-8 py-6 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
-            <h3 className="font-bold text-xl text-gray-900">System Queue</h3>
+            <h3 className="font-bold text-xl text-gray-900">Verification Queue</h3>
             <span className="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full tracking-wider uppercase border border-orange-200">Needs Review</span>
           </div>
           <div className="divide-y divide-gray-100">
@@ -173,27 +173,27 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Blockchain Activity */}
+        {/* Registry Issuance Activity */}
         <div className="bg-white rounded-xl p-8 flex flex-col gap-6 border border-gray-200 shadow-sm">
-          <h3 className="font-bold text-xl text-gray-900 border-b border-gray-100 pb-4">On-Chain Activity</h3>
+          <h3 className="font-bold text-xl text-gray-900 border-b border-gray-100 pb-4">Registry Activity</h3>
           <div className="flex flex-col gap-6">
             {projects.filter(p => p.tx_hash).slice(0, 5).map(p => (
               <div key={p.id} className="flex gap-4 items-start">
                 <div className="w-1.5 h-full min-h-[40px] bg-[#0F766E] rounded-full mt-1" />
                 <div>
                   <p className="text-xs font-mono text-[#0F766E] truncate w-40 bg-[#E7F3F2] px-2 py-0.5 rounded border border-[#d0e9e7]">{p.tx_hash}</p>
-                  <p className="text-sm font-bold text-gray-900 mt-1">Minted {p.credits_generated} Tokens</p>
+                  <p className="text-sm font-bold text-gray-900 mt-1">Issued {p.credits_generated} Credits</p>
                   <p className="text-xs text-gray-500 mt-0.5">{new Date(p.created_at).toLocaleDateString()}</p>
                 </div>
               </div>
             ))}
             {projects.filter(p => p.tx_hash).length === 0 && (
-              <p className="text-sm text-gray-500 italic">No recent on-chain activity.</p>
+              <p className="text-sm text-gray-500 italic">No recent issuance activity.</p>
             )}
           </div>
-          <button className="mt-auto py-3 bg-white border border-gray-300 text-gray-700 rounded-lg w-full text-sm font-bold hover:bg-gray-50 hover:text-gray-900 transition-all shadow-sm">
-            Full Ledger Explorer
-          </button>
+          <Link to="/admin/minted-carbon" className="mt-auto py-3 bg-white border border-gray-300 text-gray-700 rounded-lg w-full text-sm font-bold hover:bg-gray-50 hover:text-gray-900 transition-all shadow-sm text-center block">
+            View Credit Issuance Ledger
+          </Link>
         </div>
       </div>
     </div>

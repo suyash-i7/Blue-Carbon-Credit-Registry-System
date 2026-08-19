@@ -14,7 +14,7 @@ const LandingPage = () => {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dark text-veridian-mist text-sm font-semibold"
         >
           <Zap size={16} />
-          Blockchain Powered Carbon Credits
+          High-Integrity Carbon Registry
         </motion.div>
         
         <motion.h1 
@@ -33,7 +33,7 @@ const LandingPage = () => {
           transition={{ delay: 0.2 }}
           className="max-w-2xl text-xl text-gray-400 font-inter"
         >
-          Veridian is the next generation registry for Blue Carbon Credits, leveraging blockchain for immutable tracking, smart contract-based expiry, and real-world impact.
+          Veridian is the next generation digital registry for Blue Carbon Credits, providing transparent tracking, standardized verification, 90-day active validity, and real-world ecological impact.
         </motion.p>
 
         <motion.div 
@@ -46,9 +46,9 @@ const LandingPage = () => {
             Get Started
             <ArrowRight size={20} />
           </Link>
-          <button className="glass py-4 px-10 rounded-lg font-semibold hover:bg-white/5 transition-all text-lg">
-            View Projects
-          </button>
+          <Link to="/login" className="glass py-4 px-10 rounded-lg font-semibold hover:bg-white/5 transition-all text-lg">
+            Explore Registry
+          </Link>
         </motion.div>
       </section>
 
@@ -77,25 +77,25 @@ const LandingPage = () => {
       <section className="flex flex-col gap-12">
         <div className="text-center space-y-4">
           <h2 className="text-4xl font-manrope font-bold">Choose Your Role</h2>
-          <p className="text-gray-400">Join the ecosystem as an NGO, Company, or Public Auditor.</p>
+          <p className="text-gray-400">Join the ecosystem as an NGO, Company, or Registry Administrator.</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <RoleCard 
             title="NGO / Project Developer" 
-            desc="Register your blue carbon projects, submit MRV data, and receive carbon tokens for your ecosystem restoration efforts."
+            desc="Register your blue carbon projects, submit MRV data, and receive verified carbon credits for your ecosystem restoration efforts."
             link="/register/ngo"
             color="border-green-500/30"
           />
           <RoleCard 
             title="Registry Admin" 
-            desc="Verify project submissions, manage carbon token minting, and ensure compliance with international carbon standards."
+            desc="Verify project submissions, manage carbon credit issuance, and ensure compliance with international carbon standards."
             link="/login"
             color="border-blue-500/30"
           />
           <RoleCard 
             title="Enterprise Client" 
-            desc="Purchase verified carbon credits to offset your corporate emissions and track impact with 90-day expiry assurance."
+            desc="Purchase verified carbon credits to offset your corporate emissions and track impact with guaranteed registry validity."
             link="/register/company"
             color="border-teal-500/30"
           />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, LayoutDashboard, History, Leaf, ArrowUpRight, Clock, AlertCircle, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
+import { ShoppingCart, LayoutDashboard, History, Leaf, ArrowUpRight, Clock, AlertCircle, Loader2, ChevronDown, ChevronUp, CheckCircle, ShieldCheck } from 'lucide-react';
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -55,12 +55,12 @@ const CompanyDashboard = () => {
     e.preventDefault();
     try {
       await axios.post('/api/company/buy-tokens', { amount: Number(requestAmount) });
-      alert('Tokens successfully purchased and transferred to your ledger!');
+      alert('Carbon credits successfully purchased and credited to your registry account!');
       setShowRequestModal(false);
       setRequestAmount('');
       fetchTokens();
     } catch (error) {
-      alert(error.response?.data?.message || 'Failed to buy tokens');
+      alert(error.response?.data?.message || 'Failed to buy credits');
     }
   };
 
@@ -71,26 +71,25 @@ const CompanyDashboard = () => {
   if (loading) return (
     <div className="flex flex-col items-center justify-center py-20 gap-4">
       <Loader2 className="animate-spin text-veridian-mist" size={48} />
-      <p className="text-gray-400 font-bold">Querying Blockchain Inventory...</p>
+      <p className="text-gray-400 font-bold">Loading Portfolio...</p>
     </div>
   );
 
-  const pendingRequests = data.history.filter(h => h.status === 'pending');
-  const approvedPurchases = data.history.filter(h => h.status === 'approved');
+  const approvedPurchases = (data.history || []).filter(h => h.status === 'approved');
 
   return (
     <div className="flex flex-col gap-10">
       <div className="flex justify-between items-end">
         <div className="space-y-2">
           <h1 className="text-4xl font-manrope font-extrabold">Corporate Portfolio</h1>
-          <p className="text-gray-400">Ledger for {user?.name || 'Loading...'}</p>
+          <p className="text-gray-400">Registry Account for {user?.name || 'Loading...'}</p>
         </div>
         <button 
           onClick={() => setShowRequestModal(true)}
           className="btn-primary flex items-center gap-2"
         >
           <ShoppingCart size={20} />
-          Buy Carbon Tokens
+          Buy Carbon Credits
         </button>
       </div>
 
@@ -136,8 +135,8 @@ const CompanyDashboard = () => {
               <div className="glass p-8 rounded-3xl border-l-4 border-red-500/50 flex flex-col gap-4 bg-gradient-to-br from-red-500/5 to-transparent">
                 <Clock className="text-red-400" size={32} />
                 <div>
-                  <p className="text-gray-400 font-semibold text-sm uppercase">Global Expiry Timer</p>
-                  <h3 className="text-lg font-manrope font-bold mb-2">All tokens expire on Dec 31, {new Date().getFullYear()}</h3>
+                  <p className="text-gray-400 font-semibold text-sm uppercase">Active Offset Validity Period</p>
+                  <h3 className="text-lg font-manrope font-bold mb-2">Annual cycle ends on Dec 31, {new Date().getFullYear()}</h3>
                   <div className="flex gap-4 mt-4">
                     <div className="flex flex-col items-center">
                       <div className="text-3xl font-bold text-red-100 bg-red-500/20 px-4 py-2 rounded-xl">{String(timeLeft.days).padStart(2, '0')}</div>
@@ -157,7 +156,7 @@ const CompanyDashboard = () => {
                     </div>
                   </div>
                 </div>
-                <p className="text-gray-500 text-sm mt-2">Irrespective of purchase/creation date, timer is ticking.</p>
+                <p className="text-gray-500 text-sm mt-2">Credits apply to corporate annual sustainability targets.</p>
               </div>
             </div>
             
@@ -169,21 +168,21 @@ const CompanyDashboard = () => {
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="text-xs font-bold text-gray-500 uppercase tracking-widest border-b border-white/5">
-                      <th className="px-8 py-4">Request ID</th>
-                      <th className="px-8 py-4">Amount (Tokens)</th>
-                      <th className="px-8 py-4">Approval Date</th>
+                      <th className="px-8 py-4">Transaction ID</th>
+                      <th className="px-8 py-4">Amount (Credits)</th>
+                      <th className="px-8 py-4">Issue Date</th>
                       <th className="px-8 py-4">Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     {approvedPurchases.map((h) => (
                       <tr key={h.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                        <td className="px-8 py-5 font-mono text-gray-400 text-xs">{h.id}</td>
+                        <td className="px-8 py-5 font-mono text-gray-400 text-xs">{h.tx_hash || h.id}</td>
                         <td className="px-8 py-5 text-xl font-bold">{h.amount} VCC</td>
                         <td className="px-8 py-5 text-gray-400">{new Date(h.created_at).toLocaleDateString()}</td>
                         <td className="px-8 py-5">
-                          <span className="px-3 py-1 rounded-lg text-xs font-bold border bg-veridian-teal/10 text-veridian-mist border-veridian-teal/20">
-                            APPROVED / HELD
+                          <span className="px-3 py-1 rounded-lg text-xs font-bold border bg-veridian-teal/10 text-veridian-mist border-veridian-teal/20 flex items-center gap-1 w-fit">
+                            <CheckCircle size={12} /> ALLOCATED
                           </span>
                         </td>
                       </tr>
@@ -191,7 +190,7 @@ const CompanyDashboard = () => {
                     {approvedPurchases.length === 0 && (
                       <tr>
                         <td colSpan="4" className="px-8 py-20 text-center text-gray-500 italic">
-                          No approved tokens held.
+                          No carbon credits held in account yet. Click "Buy Carbon Credits" to acquire credits.
                         </td>
                       </tr>
                     )}
@@ -201,8 +200,6 @@ const CompanyDashboard = () => {
             </div>
           </motion.div>
         )}
-
-
 
         {activeTab === 'purchases' && (
           <motion.div 
@@ -215,8 +212,8 @@ const CompanyDashboard = () => {
             <div className="glass p-6 rounded-3xl border-l-4 border-veridian-teal flex items-center gap-4 bg-veridian-teal/5">
               <History className="text-veridian-teal" size={32} />
               <div>
-                <h3 className="text-xl font-bold">Company Purchases & Blockchain Deployment</h3>
-                <p className="text-gray-400 text-sm">Approved purchases transferred to your company wallet, displaying all contract details and transaction hashes.</p>
+                <h3 className="text-xl font-bold">Company Purchases & Issuance Records</h3>
+                <p className="text-gray-400 text-sm">Verified carbon credits allocated to your organization, displaying registry reference codes and validation timestamps.</p>
               </div>
             </div>
 
@@ -233,13 +230,13 @@ const CompanyDashboard = () => {
                       </div>
                       <div>
                         <h4 className="text-xl font-bold">{req.amount} VCC</h4>
-                        <p className="text-sm font-mono text-gray-500 mt-1">ID: {req.id}</p>
+                        <p className="text-sm font-mono text-gray-500 mt-1">Ref: {req.tx_hash || req.id}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-6">
                       <div className="text-right hidden md:block">
-                        <p className="text-sm font-bold text-gray-300">Transaction Hash</p>
-                        <p className="text-xs text-veridian-mist font-mono max-w-[150px] truncate">{req.tx_hash || 'Pending Chain Sync...'}</p>
+                        <p className="text-sm font-bold text-gray-300">Registry Status</p>
+                        <p className="text-xs text-veridian-mist font-mono">VERIFIED & ACTIVE</p>
                       </div>
                       <span className="px-3 py-1 rounded-lg text-xs font-bold border bg-veridian-teal/10 text-veridian-mist border-veridian-teal/20">
                         APPROVED
@@ -256,27 +253,21 @@ const CompanyDashboard = () => {
                       className="px-6 pb-6 pt-2 border-t border-white/5 bg-black/20"
                     >
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                         <div className="space-y-1">
-                          <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Transaction Hash</p>
-                          {req.tx_hash ? (
-                            <a href={`https://sepolia.etherscan.io/tx/${req.tx_hash}`} target="_blank" rel="noopener noreferrer" className="font-mono text-sm text-blue-400 hover:underline flex items-center gap-1 break-all">
-                              {req.tx_hash} <ArrowUpRight size={12} />
-                            </a>
-                          ) : (
-                            <p className="font-mono text-sm text-gray-400">N/A</p>
-                          )}
+                        <div className="space-y-1">
+                          <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Registry Certificate Ref</p>
+                          <p className="font-mono text-sm text-[#0F766E] font-bold">{req.tx_hash || req.id}</p>
                         </div>
                         <div className="space-y-1">
-                          <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Approval Date</p>
-                          <p className="font-mono text-sm">{new Date(req.created_at).toLocaleString()}</p>
+                          <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Issue Timestamp</p>
+                          <p className="font-mono text-sm text-gray-300">{new Date(req.created_at).toLocaleString()}</p>
                         </div>
                         <div className="space-y-1">
-                          <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Tokens Transferred</p>
-                          <p className="font-mono text-sm text-veridian-mist font-bold">{req.amount} VCC</p>
+                          <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Credits Allocated</p>
+                          <p className="font-mono text-sm text-veridian-mist font-bold">{req.amount} VCC (Tonnes CO2)</p>
                         </div>
                         <div className="space-y-1">
-                          <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Destination Wallet</p>
-                          <p className="font-mono text-sm text-gray-300">Company Blockchain Ledger</p>
+                          <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Registry Beneficiary</p>
+                          <p className="font-mono text-sm text-gray-300">{user?.name || 'Corporate Account'}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -285,7 +276,7 @@ const CompanyDashboard = () => {
               ))}
               {approvedPurchases.length === 0 && (
                 <div className="glass p-10 rounded-3xl text-center text-gray-500 italic">
-                  No approved purchases found in your ledger.
+                  No purchase records found in your registry account.
                 </div>
               )}
             </div>
@@ -301,8 +292,8 @@ const CompanyDashboard = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="glass p-8 rounded-3xl w-full max-w-md flex flex-col gap-6"
           >
-            <h3 className="text-2xl font-bold">Buy Carbon Tokens</h3>
-            <p className="text-gray-400 text-sm">Purchase VCC tokens directly. Annual limit is 100 tokens per company. Tokens will be instantly transferred to your blockchain ledger.</p>
+            <h3 className="text-2xl font-bold">Buy Carbon Credits</h3>
+            <p className="text-gray-400 text-sm">Purchase VCC credits directly. Annual limit is 100 credits per organization. Credits will be credited directly to your registry portfolio.</p>
             <form onSubmit={handleBuyTokens} className="flex flex-col gap-4">
               <input 
                 type="number" 
@@ -310,6 +301,8 @@ const CompanyDashboard = () => {
                 className="input-field"
                 value={requestAmount}
                 onChange={(e) => setRequestAmount(e.target.value)}
+                min="1"
+                max="100"
                 required
               />
               <div className="flex gap-3 pt-4">

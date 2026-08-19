@@ -1,5 +1,4 @@
 const supabase = require('../config/supabaseClient');
-const blockchainService = require('../services/blockchainService');
 
 exports.getPendingUsers = async (req, res) => {
   try {
@@ -65,15 +64,15 @@ exports.approveProject = async (req, res) => {
     // 1. Fetch project with submitter data
     const { data: project, error: fetchErr } = await supabase
       .from('projects')
-      .select('*, submitted_by(wallet_address)')
+      .select('*, submitted_by(name, email)')
       .eq('id', id)
       .single();
 
     if (fetchErr || !project) return res.status(404).json({ message: 'Project not found' });
 
-    // 2. Blockchain Mint
+    // 2. Calculate Credits and Generate Registry Certificate Reference
     const amount = credits || (project.area * 10);
-    const txHash = await blockchainService.mintTokens(project.submitted_by.wallet_address, amount);
+    const registryRef = `REG-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
 
     // 3. Update Supabase
     const { data: updatedProject, error: updateErr } = await supabase
@@ -81,7 +80,7 @@ exports.approveProject = async (req, res) => {
       .update({
         status: 'approved',
         credits_generated: amount,
-        tx_hash: txHash
+        tx_hash: registryRef
       })
       .eq('id', id)
       .select()
@@ -98,7 +97,7 @@ exports.getTokenRequests = async (req, res) => {
   try {
     const { data, error } = await supabase
       .from('token_requests')
-      .select('*, company_id(name, email, wallet_address)');
+      .select('*, company_id(name, email)');
 
     if (error) throw error;
     res.json(data);
@@ -112,25 +111,21 @@ exports.approveTokenRequest = async (req, res) => {
   try {
     const { data: request, error: fetchErr } = await supabase
       .from('token_requests')
-      .select('*, company_id(wallet_address)')
+      .select('*, company_id(name, email)')
       .eq('id', id)
       .single();
 
     if (fetchErr || !request) return res.status(404).json({ message: 'Request not found' });
 
-    // 1. Blockchain Transfer
-    const txHash = await blockchainService.transferTokens(
-      request.company_id.wallet_address,
-      request.amount,
-      90
-    );
+    // 1. Generate Registry Transfer Reference
+    const transferRef = `TRF-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
 
     // 2. Update Supabase
     const { data: updatedRequest, error: updateErr } = await supabase
       .from('token_requests')
       .update({
         status: 'approved',
-        tx_hash: txHash,
+        tx_hash: transferRef,
         expires_at: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString()
       })
       .eq('id', id)

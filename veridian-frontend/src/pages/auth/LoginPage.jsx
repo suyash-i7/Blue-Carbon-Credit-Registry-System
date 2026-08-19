@@ -41,7 +41,7 @@ const LoginPage = () => {
       >
         <div className="text-center space-y-2">
           <h2 className="text-3xl font-manrope font-extrabold tracking-tight text-gray-900">Access Registry</h2>
-          <p className="text-gray-500">Secure entry to Veridian Ledger</p>
+          <p className="text-gray-500">Secure entry to Veridian Registry</p>
         </div>
 
         {location.state?.message && (
@@ -99,7 +99,7 @@ const LoginPage = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-gray-700 ml-1">Private Key / Password</label>
+            <label className="text-sm font-semibold text-gray-700 ml-1">Password</label>
             <div className="relative">
               <Lock className="absolute left-4 top-3.5 text-gray-400" size={18} />
               <input 

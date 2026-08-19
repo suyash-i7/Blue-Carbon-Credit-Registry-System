@@ -69,7 +69,7 @@ const NGOsPage = () => {
                 ) : (
                   <span className="px-3 py-1 bg-orange-50 text-orange-700 border border-orange-200 rounded text-xs font-bold ml-auto">PENDING</span>
                 )}
-                <span className="text-xs font-mono text-gray-400 max-w-[150px] truncate">{ngo.wallet_address || 'No Wallet Linked'}</span>
+                <span className="text-xs text-gray-400">Joined {new Date(ngo.created_at).toLocaleDateString()}</span>
               </div>
             </div>
           ))}

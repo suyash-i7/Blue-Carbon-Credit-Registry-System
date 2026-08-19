@@ -86,7 +86,7 @@ const NGODashboard = () => {
                 <tr key={p.id} className="hover:bg-white/5 transition-colors cursor-pointer group">
                   <td className="px-8 py-5">
                     <div className="font-bold group-hover:text-veridian-mist transition-colors">{p.name}</div>
-                    {p.tx_hash && <p className="text-[10px] font-mono text-gray-600 truncate w-32">{p.tx_hash}</p>}
+                    {p.tx_hash && <p className="text-[10px] font-mono text-gray-400 truncate w-36">Ref: {p.tx_hash}</p>}
                   </td>
                   <td className="px-8 py-5 text-gray-400">{p.location}</td>
                   <td className="px-8 py-5 text-gray-400">{p.area} Ha</td>

@@ -15,12 +15,12 @@ const MintedCarbonPage = () => {
     try {
       setLoading(true);
       const res = await axios.get('/api/admin/projects');
-      // Filter only approved projects that minted valid carbon within 1 year
-      const validMinted = res.data.filter(p => 
+      // Filter only approved projects that issued valid carbon within 1 year
+      const validIssued = res.data.filter(p => 
         p.status === 'approved' && 
         (new Date(p.created_at).getTime() > Date.now() - 365 * 24 * 60 * 60 * 1000)
       );
-      setProjects(validMinted);
+      setProjects(validIssued);
     } catch (err) {
       console.error(err);
     } finally {
@@ -31,7 +31,7 @@ const MintedCarbonPage = () => {
   if (loading) return (
     <div className="flex flex-col items-center justify-center py-20 gap-4">
       <Loader2 className="animate-spin text-[#0F766E]" size={48} />
-      <p className="text-gray-500 font-bold">Synchronizing Ledger...</p>
+      <p className="text-gray-500 font-bold">Loading Credit Ledger...</p>
     </div>
   );
 
@@ -43,7 +43,7 @@ const MintedCarbonPage = () => {
         </Link>
         <div className="space-y-1">
           <h1 className="text-3xl font-manrope font-extrabold flex items-center gap-3 text-gray-900">
-            Active Carbon Minting History
+            Active Carbon Credit Issuance History
           </h1>
           <p className="text-gray-500 font-medium tracking-wide">Valid Registry Credits (Within 365 Days)</p>
         </div>
@@ -51,15 +51,15 @@ const MintedCarbonPage = () => {
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
         <div className="px-8 py-6 border-b border-gray-200 bg-gray-50">
-          <h3 className="font-bold text-xl text-gray-900">Ledger Approvals</h3>
+          <h3 className="font-bold text-xl text-gray-900">Credit Issuance Records</h3>
         </div>
         <div className="divide-y divide-gray-100">
           {projects.map((p) => (
             <div key={p.id} className="p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
               <div>
-                <p className="text-sm font-bold text-[#0F766E]">{p.submitted_by?.name || 'Unknown NGO'}</p>
+                <p className="text-sm font-bold text-[#0F766E]">{p.submitted_by?.name || 'Registered NGO'}</p>
                 <h4 className="text-lg font-bold text-gray-900">{p.name}</h4>
-                <p className="text-xs font-mono text-gray-500 mt-1 uppercase">TX: {p.tx_hash}</p>
+                <p className="text-xs font-mono text-gray-500 mt-1 uppercase">Registry Ref: {p.tx_hash}</p>
               </div>
               <div className="text-right">
                 <span className="text-2xl font-black text-gray-900 block">{p.credits_generated} T</span>
@@ -69,7 +69,7 @@ const MintedCarbonPage = () => {
           ))}
           {projects.length === 0 && (
             <div className="p-12 text-center text-gray-500 italic flex items-center justify-center gap-2">
-              <AlertCircle size={18} /> No active minted credits found.
+              <AlertCircle size={18} /> No active issued credits found.
             </div>
           )}
         </div>

@@ -1,5 +1,4 @@
 const supabase = require('../config/supabaseClient');
-const blockchainService = require('../services/blockchainService');
 
 exports.buyTokens = async (req, res) => {
   const { amount } = req.body;
@@ -26,29 +25,17 @@ exports.buyTokens = async (req, res) => {
       return res.status(400).json({ message: `Annual purchase limit of ${ANNUAL_LIMIT} tokens exceeded. You can only buy ${ANNUAL_LIMIT - totalBought} more tokens this year.` });
     }
 
-    const { data: user, error: userErr } = await supabase
-      .from('users')
-      .select('wallet_address')
-      .eq('id', companyId)
-      .single();
-      
-    if (userErr) throw userErr;
-
-    // Instant Blockchain Transfer from central contract pool minter
-    const txHash = await blockchainService.transferTokens(
-      user.wallet_address,
-      amount,
-      90
-    );
+    // Generate Registry Transaction Reference
+    const purchaseTx = `VCC-PUR-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
 
     const { data, error } = await supabase
       .from('token_requests')
       .insert([
         {
           company_id: companyId,
-          amount,
+          amount: Number(amount),
           status: 'approved',
-          tx_hash: txHash,
+          tx_hash: purchaseTx,
           expires_at: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString()
         }
       ])
@@ -64,29 +51,23 @@ exports.buyTokens = async (req, res) => {
 
 exports.getTokens = async (req, res) => {
   try {
-    // 1. Get user for wallet address
-    const { data: user, error: userErr } = await supabase
-      .from('users')
-      .select('wallet_address')
-      .eq('id', req.user.id)
-      .single();
-
-    if (userErr) throw userErr;
-
-    // 2. Get Blockchain Balance
-    const balance = await blockchainService.getBalance(user.wallet_address);
-    
-    // 3. Get History
+    // 1. Get History from Supabase
     const { data: requests, error: reqErr } = await supabase
       .from('token_requests')
       .select('*')
-      .eq('company_id', req.user.id);
+      .eq('company_id', req.user.id)
+      .order('created_at', { ascending: false });
 
     if (reqErr) throw reqErr;
+
+    // 2. Calculate balance from approved records
+    const balance = (requests || [])
+      .filter(r => r.status === 'approved')
+      .reduce((sum, r) => sum + Number(r.amount || 0), 0);
     
     res.json({
       balance,
-      history: requests
+      history: requests || []
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

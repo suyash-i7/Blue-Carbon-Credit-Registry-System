@@ -1,4 +1,11 @@
 require('dotenv').config();
+
+if (!process.env.ADMIN_EMAIL) {
+  console.error('FATAL ERROR: ADMIN_EMAIL environment variable is not defined.');
+  console.error('Please configure ADMIN_EMAIL in your .env file to prevent lockout.');
+  process.exit(1);
+}
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');

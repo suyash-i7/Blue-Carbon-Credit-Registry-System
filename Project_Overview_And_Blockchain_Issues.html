@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veridian Blue Carbon Registry - Project Overview & Blockchain Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0f766e;
+      --primary-light: #f0fdfa;
+      --text-main: #1f2937;
+      --text-muted: #4b5563;
+      --bg-main: #ffffff;
+      --bg-alt: #f9fafb;
+      --border-color: #e5e7eb;
+      --accent-red: #be123c;
+      --accent-red-light: #fff1f2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-alt);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--bg-main);
+      padding: 50px 60px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      border: 1px solid var(--border-color);
+    }
+
+    /* Print instruction bar */
+    .print-tip {
+      max-width: 850px;
+      margin: 0 auto 20px auto;
+      background: var(--primary-light);
+      border: 1px solid #99f6e4;
+      padding: 16px 20px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .print-tip p {
+      font-size: 14px;
+      color: #0d9488;
+      font-weight: 500;
+    }
+
+    .btn-print {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-print:hover {
+      background: #0d9488;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 30px;
+      margin-bottom: 40px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary-color);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--primary-color);
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-color);
+      border-left: 4px solid var(--primary-color);
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text-main);
+      font-size: 15px;
+    }
+
+    /* Lists */
+    ul, ol {
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    li strong {
+      color: var(--primary-color);
+    }
+
+    /* Highlight box */
+    .issue-box {
+      background: var(--accent-red-light);
+      border: 1px solid #fecdd3;
+      border-left: 4px solid var(--accent-red);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .issue-box h3 {
+      color: var(--accent-red);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .issue-box p {
+      color: #9f1239;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    /* Infrastructure Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      margin-top: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background-color: white;
+        padding: 0;
+      }
+      .container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+      .print-tip {
+        display: none !important;
+      }
+      h2 {
+        page-break-after: avoid;
+      }
+      .card, .issue-box {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-tip">
+    <p>💡 Tip: Click "Save as PDF" to generate your PDF document.</p>
+    <button class="btn-print" onclick="window.print()">Save as PDF</button>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="badge">Architecture Report</div>
+      <h1>Veridian Blue Carbon Credit Registry</h1>
+      <div class="subtitle">System Overview and Technical Analysis of Blockchain Integration Issues</div>
+    </header>
+
+    <main>
+      <section>
+        <h2>1. Executive Summary</h2>
+        <p>
+          The <strong>Veridian Blue Carbon Credit Registry</strong> is a web-based ecosystem designed to manage, verify, and trade blue carbon credits. The system enables Non-Governmental Organizations (NGOs) to submit ecological restoration projects, allows administrators to audit and mint carbon credits, and lets companies purchase these credits to offset their emissions. 
+        </p>
+        <p>
+          While the frontend and database layers operate under standard web architecture, the <strong>local blockchain layer (implemented using Hardhat and ethers.js)</strong> introduces operational instability and connection failures. This report outlines the current structure of the registry and diagnoses the primary root causes of these blockchain-related failures.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. System Architecture Overview</h2>
+        <div class="grid">
+          <div class="card">
+            <h4>Frontend Layer</h4>
+            <p>Built with Vite, React, and Tailwind CSS. It communicates with the backend via API endpoints to register users, submit projects, and purchase tokens.</p>
+          </div>
+          <div class="card">
+            <h4>Database Layer (Supabase)</h4>
+            <p>Maintains persistent state for user profiles (roles, approval status), submitted projects, token transaction history, and wallet addresses.</p>
+          </div>
+          <div class="card">
+            <h4>Backend API Server</h4>
+            <p>An Express.js Node server that coordinates authorization, handles project validation, and executes database queries and blockchain transactions.</p>
+          </div>
+          <div class="card">
+            <h4>Blockchain Layer (Hardhat)</h4>
+            <p>An ERC-20 smart contract (CarbonToken) deployed to a local developer network simulating token minting and expiry-based credit transfers.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>3. Smart Contract Design</h2>
+        <p>
+          The blockchain logic is contained in the <code>CarbonToken.sol</code> contract, which inherits standard ERC-20 structures from OpenZeppelin. It supports three major operations:
+        </p>
+        <ul>
+          <li><strong>Minting (<code>mint</code>):</strong> Allowed only for the admin. It creates new tokens (Veridian Carbon Credits, "VCC") and assigns them to the NGO that registered the project.</li>
+          <li><strong>Transferring with Expiry (<code>transferWithExpiry</code>):</strong> Transfers tokens to a company while logging an expiration timestamp.</li>
+          <li><strong>Burning (<code>burn</code>):</strong> Destroys tokens to permanently retire carbon credits.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Analysis of Blockchain Failure Points</h2>
+        <p>
+          The issues causing login, registration, and credit transfer actions to fail are primarily due to how the local blockchain node is integrated with the web application:
+        </p>
+
+        <div class="issue-box">
+          <h3>Issue A: Hardhat Node Lifetime & Local Network Offline</h3>
+          <p>
+            The backend expects the local Hardhat blockchain network to be running at <code>http://127.0.0.1:8545</code>. Because this node is run locally via command line (<code>npx hardhat node</code>), if it is not explicitly started, or if it crashes, the backend cannot connect. This results in connection failures (like <code>ENOTFOUND</code> or <code>fetch failed</code>) which stall all operations.
+          </p>
+        </div>
+
+        <div class="issue-box">
+          <h3>Issue B: Database & Blockchain State Desynchronization</h3>
+          <p>
+            Whenever the local Hardhat node is restarted, the entire local blockchain state is wiped clean, and account balances return to zero. However, your persistent database (Supabase) retains all historical records of minted tokens and approvals. This creates a state mismatch: the database reports that an NGO possesses tokens, but querying the smart contract reveals a balance of zero.
+          </p>
+        </div>
+
+        <div class="issue-box">
+          <h3>Issue C: Nonce & Contract Address Mismatches</h3>
+          <p>
+            Redeploying the smart contract generates a new contract address. If the developer forgets to manually update the <code>CONTRACT_ADDRESS</code> inside the backend’s <code>.env</code> file, the backend continues to send requests to the old address, causing transactions to revert or fail silently.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>5. Recommended Strategic Solutions</h2>
+        <p>
+          To move the project from a local developer simulation to a stable environment, we recommend implementing the following changes:
+        </p>
+        <ol>
+          <li><strong>Migrate to an Ethereum Testnet:</strong> Deploy the <code>CarbonToken</code> contract to a permanent public testnet (like Sepolia or Holesky) using services like Infura or Alchemy. This ensures the blockchain is always online and doesn't get wiped.</li>
+          <li><strong>Implement a Web3 Wallet Provider (Metamask) on Frontend:</strong> Instead of executing blockchain transactions on the backend using a single private key, allow users to sign transactions directly from their browser using a browser extension wallet (like MetaMask or WalletConnect).</li>
+          <li><strong>Implement Blockchain Event Listeners:</strong> Rather than updating Supabase immediately inside Express controllers, set up event listeners that watch the blockchain for transaction confirmations and update the database asynchronously once the transaction is finalized on the ledger.</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      <span>Veridian Blue Carbon Registry</span>
+      <span>Confidential - For Internal Review</span>
+    </footer>
+  </div>
+
+</body>
+</html>
